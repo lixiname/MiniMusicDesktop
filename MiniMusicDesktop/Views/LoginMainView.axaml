@@ -1,0 +1,36 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:MiniMusicDesktop.ViewModels"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MiniMusicDesktop.Views.LoginMainView"
+			 x:DataType="vm:LoginMainViewModel">
+	
+	<Panel>
+		<DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="300" Height="200">
+			
+			
+			<UniformGrid DockPanel.Dock="Bottom" Rows="1" Columns="2">
+				<Button Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" Command="{Binding LoginCommand}">login</Button>
+				<Button Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" Command="{Binding QuitCommand}">quit</Button>
+			</UniformGrid>
+			<UniformGrid DockPanel.Dock="Bottom" Rows="1" Columns="2">
+				<RadioButton  GroupName="First"
+              Content="user" IsChecked="{Binding IsOptionUserChecked}"/>
+				<RadioButton GroupName="First"
+						  Content="managment" IsChecked="{Binding IsOptionManagmentChecked}"/>
+			</UniformGrid>
+			
+			<Panel DockPanel.Dock="Top">
+				<Button HorizontalAlignment="Center">logo</Button>
+			</Panel>
+			<Grid ColumnDefinitions="* * *" RowDefinitions="* *" ShowGridLines="True" Background="Aqua">
+				<Label Grid.Column="0" Grid.Row="0">id</Label>
+				<TextBox Grid.Column="1" Grid.Row="0" Watermark="Enter your name" Grid.ColumnSpan="2" Text="{Binding UId}"></TextBox>
+				<Label Grid.Column="0" Grid.Row="1">password</Label>
+				<TextBox Grid.Column="1" Grid.Row="1" Watermark="Enter your password" Grid.ColumnSpan="2" Text="{Binding Password}"></TextBox>
+			</Grid>
+		</DockPanel>
+	</Panel>
+</UserControl>
