@@ -1,6 +1,6 @@
 # MiniMusicDesktop
 
-这是一个简单的音乐管理器的纯前端桌面应用程序，使用 **.NET** 旗下的 **Avalonia** 跨平台UI进行开发,其中使用的MVVM模式为ReavtiveUI。该程序提供了面向桌面的GUI图形界面（既包括web前端如VUE3或桌面前端如**Avalonia**编写的桌面前端），该程序可以和另一个仓库中的后端程序搭配使用。
+这是一个简单的音乐管理器的纯前端桌面应用程序，目前还没有全部，使用 **.NET** 旗下的 **Avalonia** 跨平台UI进行开发,其中使用的MVVM模式为ReavtiveUI。该程序提供了面向桌面的GUI图形界面（既包括web前端如VUE3或桌面前端如**Avalonia**编写的桌面前端），该程序可以和另一个仓库中的后端程序搭配使用。
 
 与音乐管理器配套的MusicManagementsMinimalAPI后端程序同样可从本人的其他仓库中得到。
 
