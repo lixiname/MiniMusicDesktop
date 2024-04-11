@@ -6,6 +6,7 @@ using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MiniMusicDesktop.Models;
+using MiniMusicDesktop.Models.Common;
 namespace MiniMusicDesktop.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
@@ -17,28 +18,34 @@ namespace MiniMusicDesktop.ViewModels
             set => this.RaiseAndSetIfChanged(ref _contentViewModel, value);
         }
 
-        
+        private LoginMainViewModel _loginMainViewModel;
         public MainWindowViewModel()
         {
-            var loginMainViewModel=new LoginMainViewModel();
+            _loginMainViewModel = new LoginMainViewModel();
             //_contentViewModel = new LoginMainViewModel();
             Observable.Merge(
-                loginMainViewModel.LoginCommand,
-                loginMainViewModel.QuitCommand.Select(_ => (User?)null))
+                _loginMainViewModel.LoginCommand,
+                _loginMainViewModel.QuitCommand.Select(_ => (InfoProfile?)null))
                 .Take(1)
                 .Subscribe(newItem =>
                 {
                     if (newItem != null)
                     {
-                        if (newItem.LoginSuccess==1)
+                        if (newItem.LoginSuccess==LoginStateEnum.Login)
                         {
-                            if (newItem.InfoTypes == 0)
+                            if (newItem.InfoTypes == InfoTypeEnum.User)
                             {
-                                ContentViewModel = new UserMainWindowViewModel(newItem);
+                                
+                                var userMainWindowViewModel = new UserMainWindowViewModel(newItem);
+                                ContentViewModel = userMainWindowViewModel;
                             }
-                            else if (newItem.InfoTypes == 1)
+                            else if (newItem.InfoTypes == InfoTypeEnum.ManagmentUser)
                             {
-                                ContentViewModel = new ManagmentMainViewModel();
+                                ContentViewModel = new ManagmentMainViewModel(newItem);
+                            }
+                            else if (newItem.InfoTypes == InfoTypeEnum.NullUser)
+                            {
+                                throw new Exception("login error");
                             }
                         }
                         else
@@ -51,10 +58,35 @@ namespace MiniMusicDesktop.ViewModels
                     }
                     
                 });
+            _loginMainViewModel.RegisterCommand
+               .Take(1)
+               .Subscribe(newItem =>
+               {
+                   var registerMainViewModel = new RegisterMainViewModel();
+                   Observable.Merge(registerMainViewModel.RegisterCommand,
+                       registerMainViewModel.QuitCommand.Select(_ => (User?)null))
+                   .Take(1)
+                   .Subscribe(newItem =>
+                   {
+                       if (newItem != null)
+                       {
 
-            ContentViewModel = loginMainViewModel;
+                           _loginMainViewModel.InitTable(newItem);
+                           ContentViewModel = _loginMainViewModel;
 
+                       }
+                       else
+                       {
 
+                           ContentViewModel = _loginMainViewModel;
+                       }
+                   });
+
+                   ContentViewModel = registerMainViewModel;
+               });
+
+            ContentViewModel = _loginMainViewModel;
+         
         }
     }
 }

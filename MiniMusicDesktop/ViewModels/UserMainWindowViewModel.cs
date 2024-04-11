@@ -27,14 +27,14 @@ namespace MiniMusicDesktop.ViewModels
             set =>this.RaiseAndSetIfChanged(ref _centerContainViewModel, value);
         }
 
-        private User _userInfo;
-        public User UserInfo
+        private InfoProfile _userInfo;
+        public InfoProfile UserInfo
         {
             get => _userInfo;
             set => this.RaiseAndSetIfChanged(ref _userInfo, value);
         }
 
-        public UserMainWindowViewModel(User userInfo) 
+        public UserMainWindowViewModel(InfoProfile userInfo) 
         {
             _userInfo = userInfo;
            _centerContainViewModel = new CenterContainViewModel();
