@@ -1,0 +1,106 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:MiniMusicDesktop.ViewModels" 
+			 xmlns:views="clr-namespace:MiniMusicDesktop.Views"
+			 x:DataType="vm:SettingsViewModel"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MiniMusicDesktop.Views.SettingsView"
+			 >
+	<Panel>
+		<DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="600" Height="400">
+			<StackPanel DockPanel.Dock="Top" >
+				<Button  HorizontalContentAlignment="Left"
+				   VerticalContentAlignment="Center"
+				   VerticalAlignment="Center"
+			   
+					Command="{Binding CloseSettingsCommand}">
+					<!--<PathIcon Data="{StaticResource person_board_regular}" >
+				</PathIcon>-->
+
+
+				</Button>
+			</StackPanel>
+			<Separator DockPanel.Dock="Top"></Separator>
+			<SplitView DockPanel.Dock="Top" IsPaneOpen="True"
+					   PanePlacement="Left" DisplayMode="Inline"
+					   OpenPaneLength="100" >
+				<SplitView.Pane>
+					<StackPanel >
+						<ScrollViewer>
+							<StackPanel>
+								<Button HorizontalAlignment="Stretch"
+									   VerticalAlignment="Center"
+									   HorizontalContentAlignment="Center"
+									   Padding="10" 
+									   Command="{Binding PasswordRemarkCommand}">
+									密码找回
+								</Button>
+								<Button HorizontalAlignment="Stretch"
+									   VerticalAlignment="Center"
+									   HorizontalContentAlignment="Center"
+									   Padding="10"
+									   Command="{Binding SettingsCommand}">
+									应用设置
+								</Button>
+								<Button 
+									HorizontalAlignment="Stretch"
+									HorizontalContentAlignment="Center"
+									   VerticalAlignment="Center"
+									   Padding="10"
+									   Command="{Binding RemarkCommand}">意见反馈</Button>
+								<Button HorizontalAlignment="Stretch"
+										HorizontalContentAlignment="Center"
+									   VerticalAlignment="Center"
+									   Padding="10"
+									   Command="{Binding TroubleTipsCommand}">常见问题</Button>
+								<Button HorizontalAlignment="Stretch"
+										HorizontalContentAlignment="Center"
+									   VerticalAlignment="Center"
+									   Padding="10"
+									   Command="{Binding AboutInformationCommand}">关于软件</Button>
+							</StackPanel>
+							
+
+						</ScrollViewer>
+						<Separator ></Separator>
+
+					</StackPanel>
+				</SplitView.Pane>
+
+				<Panel >
+					<views:CenterContainView DataContext="{Binding CenterContainViewModel}"/>
+				</Panel>
+				
+
+			</SplitView>
+			<Separator DockPanel.Dock="Top"></Separator>
+			<Grid ShowGridLines="False" ColumnDefinitions="200,200,200,200"
+				  RowDefinitions="Auto">
+				<Label Grid.Column="0" Grid.Row="0" Margin="10"
+					   Content="恢复所有默认项">
+
+					<Label.Foreground>
+						<SolidColorBrush Color="Red" />
+					</Label.Foreground>
+				</Label>
+
+
+				<Button Grid.Column="3" Grid.Row="0"
+						Margin="10"
+						HorizontalAlignment="Center"
+						HorizontalContentAlignment="Center" Width="80">确定</Button>
+			</Grid>
+
+
+		</DockPanel>
+	</Panel>
+
+
+
+
+
+
+
+</UserControl>

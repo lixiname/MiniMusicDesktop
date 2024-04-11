@@ -23,13 +23,17 @@
 								<SolidColorBrush Color="Red"/>
 							</Button.Background>
 						</Button>
-						<Button DockPanel.Dock="Right" Margin="0 5 10 0" Background="Black" Foreground="White">
+						<Button DockPanel.Dock="Right" Margin="0 5 10 0" Background="Black" 
+								Foreground="White"
+							Command="{Binding SettingsCommand}">
 							<PathIcon Data="{StaticResource launcher_settings_regular}" ></PathIcon>
 						</Button>
 						<Button DockPanel.Dock="Right" Margin="0 5 10 0">
 							<PathIcon Data="{StaticResource weather_moon_regular}" ></PathIcon>
 						</Button>
-						<Button DockPanel.Dock="Right" Margin="0 5 10 0">
+						<Button DockPanel.Dock="Right" Margin="0 5 10 0"
+								Command="{Binding UserInformationSettingsCommand}"
+								>
 							<PathIcon Data="{StaticResource person_regular}" ></PathIcon>
 						</Button>
 						<TextBlock DockPanel.Dock="Right"></TextBlock>
@@ -94,7 +98,7 @@
 					</Grid>
 				</Panel>
 				<DockPanel DockPanel.Dock="Right">
-					<Panel Margin="20" DockPanel.Dock="Left" Width="450">
+					<Panel Margin="20" DockPanel.Dock="Left" Width="50">
 						<Button HorizontalAlignment="Right" VerticalAlignment="Top"
 							Command="{Binding BuyMusicCommand}">
 							<PathIcon Data="{StaticResource store_microsoft_regular}" />

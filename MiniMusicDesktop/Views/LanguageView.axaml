@@ -1,0 +1,40 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MiniMusicDesktop.Views.LanguageView">
+	<StackPanel >
+		<Border
+				BorderBrush="DarkRed"
+				BorderThickness="1"
+				Margin="15">
+			<StackPanel>
+				<Label  Padding="10">自定义应用设置</Label>
+				<CheckBox IsChecked="True" Margin="20">完成后打开文件夹</CheckBox>
+			</StackPanel>
+		</Border>
+		<Border
+				BorderBrush="DarkRed"
+				BorderThickness="1"
+				Margin="15">
+			<StackPanel>
+				<Label  Padding="10">应用默认语言</Label>
+				<ComboBox Width="100" Margin="20">
+					<ComboBoxItem>
+						简体中文
+					</ComboBoxItem>
+					<ComboBoxItem>
+						繁体中文
+					</ComboBoxItem>
+					<ComboBoxItem>
+						English
+					</ComboBoxItem>
+				</ComboBox>
+
+			</StackPanel>
+		</Border>
+
+
+	</StackPanel>
+</UserControl>

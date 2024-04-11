@@ -1,0 +1,223 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:MiniMusicDesktop.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MiniMusicDesktop.Views.UserInformationView"
+			 x:DataType="vm:UserInformationViewModel">
+	<Panel>
+		<DockPanel VerticalAlignment="Center" HorizontalAlignment="Center"
+				   Width="300" Height="350">
+
+			<UniformGrid DockPanel.Dock="Bottom" Rows="1" Columns="1"
+						 >
+				<Button Grid.Column="0" Grid.Row="0"
+						HorizontalAlignment="Center"
+						HorizontalContentAlignment="Center"
+						Command="{Binding ChangeInfoCommand}"
+						Width="80"
+						CornerRadius="10">确认修改</Button>
+			</UniformGrid>
+
+			<Grid ColumnDefinitions="* * * *" RowDefinitions="* * * * * * *"
+				  Width="400"
+				  DockPanel.Dock="Bottom"
+				  >
+				<Border
+					Grid.Column="0" Grid.Row="0"
+					BorderBrush="Black"
+					BorderThickness="1"
+					CornerRadius="8"
+					Padding="2" Margin="10">
+					<Label HorizontalAlignment="Center"
+					   VerticalAlignment="Center" >账号</Label>
+				</Border>
+				<Border
+					Grid.Column="1" Grid.Row="0"
+					Grid.ColumnSpan="2"
+					BorderBrush="Black"
+					BorderThickness="1"
+					CornerRadius="8"
+					Padding="2" Margin="10" >
+					<TextBox IsEnabled="False"
+						 Watermark="输入账号名"  Text="{Binding UId}">
+					</TextBox>
+				</Border>
+				
+
+				<Border
+					Grid.Column="0" Grid.Row="1"
+					
+                    BorderBrush="Black"
+                    BorderThickness="1"
+                    CornerRadius="8"
+                    Padding="2" Margin="10">
+					<Label HorizontalAlignment="Center"
+					   VerticalAlignment="Center" >昵称</Label>
+				</Border>
+				<Border
+					Grid.Column="1" Grid.Row="1"
+					Grid.ColumnSpan="2"
+						BorderBrush="Black"
+						BorderThickness="1"
+						CornerRadius="8"
+						Padding="2" Margin="10">
+					<TextBox
+						IsEnabled="{Binding NameIsEnabled}"
+						 Watermark="输入新称呼"  Text="{Binding Name}">
+					</TextBox>
+				</Border>
+				<Border
+					Grid.Column="3" Grid.Row="1"
+					BorderBrush="Black"
+					BorderThickness="1"
+					CornerRadius="8">
+					<Button
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Command="{Binding ChangeNameCommand}">修改</Button>
+				</Border>
+
+				<Border
+					Grid.Column="0" Grid.Row="2"
+					
+                    BorderBrush="Black"
+                    BorderThickness="1"
+                    CornerRadius="8"
+                    Padding="2" Margin="10">
+					<Label HorizontalAlignment="Center"
+					   VerticalAlignment="Center" >邮箱</Label>
+				</Border>
+				<Border
+					Grid.Column="1" Grid.Row="2"
+					Grid.ColumnSpan="2"
+						BorderBrush="Black"
+						BorderThickness="1"
+						CornerRadius="8"
+						Padding="2" Margin="10">
+					<TextBox
+						IsEnabled="{Binding EmailIsEnabled}"
+						 Watermark="输入新邮箱地址"  Text="{Binding Email}">
+					</TextBox>
+				</Border>
+				<Border
+					Grid.Column="3" Grid.Row="2"
+					BorderBrush="Black"
+					BorderThickness="1"
+					CornerRadius="8">
+					<Button
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Command="{Binding ChangeEmailCommand}">修改</Button>
+				</Border>
+				<Border
+					Grid.Column="0" Grid.Row="3"
+					
+                    BorderBrush="Black"
+                    BorderThickness="1"
+                    CornerRadius="8"
+                    Padding="2" Margin="10">
+					<Label HorizontalAlignment="Center"
+					   VerticalAlignment="Center" >手机号</Label>
+				</Border>
+				<Border
+					Grid.Column="1" Grid.Row="3"
+					Grid.ColumnSpan="2"
+						BorderBrush="Black"
+						BorderThickness="1"
+						CornerRadius="8"
+						Padding="2" Margin="10">
+					<TextBox
+						IsEnabled="{Binding PhoneIsEnabled}"
+						 Watermark="输入新电话号码"  Text="{Binding Phone}">
+					</TextBox>
+				</Border>
+				<Border
+					Grid.Column="3" Grid.Row="3"
+					BorderBrush="Black"
+					BorderThickness="1"
+					CornerRadius="8">
+					<Button
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Command="{Binding ChangePhoneCommand}">修改</Button>
+				</Border>
+
+
+				<Border
+					Grid.Column="0" Grid.Row="4"
+					BorderBrush="Black"
+                    BorderThickness="1"
+					CornerRadius="8"
+					Padding="2" Margin="10">
+					<Label
+					   HorizontalAlignment="Center"
+					   VerticalAlignment="Center"
+					   >旧密码</Label>
+				</Border>
+				<Border
+					Grid.Column="1" Grid.Row="4"
+					Grid.ColumnSpan="2"
+                    BorderBrush="Black"
+                    BorderThickness="1"
+                    CornerRadius="8"
+                    Padding="2" Margin="10">
+					<TextBox
+						IsEnabled="{Binding PasswordIsEnabled}"
+						Watermark="输入旧密码"
+					    Text="{Binding OldPassword}"
+						PasswordChar="*"></TextBox>
+				</Border>
+				<Border
+					Grid.Column="3" Grid.Row="4"
+					BorderBrush="Black"
+					BorderThickness="1"
+					CornerRadius="8">
+					<Button
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Command="{Binding ChangePasswordCommand}">修改</Button>
+				</Border>
+
+				<Border
+					Grid.Column="0" Grid.Row="5"
+					BorderBrush="Black"
+                    BorderThickness="1"
+					CornerRadius="8"
+					Padding="2" Margin="10">
+					<Label
+					   HorizontalAlignment="Center"
+					   VerticalAlignment="Center"
+					   >新密码</Label>
+				</Border>
+				<Border
+					Grid.Column="1" Grid.Row="5"
+					Grid.ColumnSpan="2"
+                    BorderBrush="Black"
+                    BorderThickness="1"
+                    CornerRadius="8"
+                    Padding="2" Margin="10">
+					<TextBox
+						IsEnabled="{Binding PasswordIsEnabled}"
+						Watermark="输入新密码"
+					    Text="{Binding NewPassword}"
+						PasswordChar="*"></TextBox>
+				</Border>
+				
+			</Grid>
+
+			<Panel DockPanel.Dock="Bottom"
+				   >
+				<Border Background="Gainsboro"
+        BorderBrush="Black"
+        BorderThickness="2"
+        CornerRadius="8"
+        Padding="10" Margin="10" Height="50">
+					<TextBlock HorizontalAlignment="Center"
+							   VerticalAlignment="Center" Foreground="Black">个人信息</TextBlock>
+				</Border>
+			</Panel>
+		</DockPanel>
+	</Panel>
+</UserControl>

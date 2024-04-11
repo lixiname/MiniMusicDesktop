@@ -93,6 +93,45 @@ namespace MiniMusicDesktop.Models
             }
 
         }
+
+        public static async Task<User> UpdateInfoAsync(string userId, 
+            string oldPassword,
+            string changePassword,
+            string? email, string? phone, string? profilePictureUrl, string? name)
+        {
+
+            using (HttpClient s_httpClient = new())
+            {
+                s_httpClient.BaseAddress = new Uri("https://localhost:7151");
+                var data = new
+                {
+                    UserId = userId,
+                    OldPassword = oldPassword,
+                    ChangePassword = changePassword,
+                    Email = email,
+                    Phone = phone,
+                    ProfilePictureUrl = profilePictureUrl,
+                    Name = name ?? "null_name"
+                };
+                string json = JsonConvert.SerializeObject(data);
+                HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                var resData = await s_httpClient.PostAsync("UserInfoUpdate", content);
+                try
+                {
+                    resData.EnsureSuccessStatusCode();
+                    string stringResponse = await resData.Content.ReadAsStringAsync();
+                    var searchResults = JsonConvert.DeserializeObject<User>(stringResponse);
+
+                    return searchResults!;
+                }
+                catch (HttpRequestException e)
+                {
+                    Console.WriteLine("user information update error");
+                    return new User { Id = -1, Password = "password", InfoTypes = InfoTypeEnum.NullUser, LoginSuccess = LoginStateEnum.Remove };
+                }
+            }
+
+        }
     }
     
 }

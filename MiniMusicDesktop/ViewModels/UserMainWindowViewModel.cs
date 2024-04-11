@@ -17,6 +17,8 @@ namespace MiniMusicDesktop.ViewModels
         public ICommand MarktetCommand { get; }
         public ICommand DownloadCommand { get; }
         public ICommand CollectedCommand { get; }
+        public ICommand SettingsCommand { get; }
+        public ICommand UserInformationSettingsCommand { get; }
         public Interaction<SearchMusicViewModel, AlbumViewModel?> ShowDialog { get; }
 
         private CenterContainViewModel _centerContainViewModel;
@@ -56,7 +58,15 @@ namespace MiniMusicDesktop.ViewModels
 
             ShowDialog = new Interaction<SearchMusicViewModel, AlbumViewModel?>();
 
-            
+            SettingsCommand = ReactiveCommand.CreateFromTask(async () =>
+            {
+                CenterContainViewModel.ChangeToSettingsViewModel();
+            });
+
+            UserInformationSettingsCommand=ReactiveCommand.CreateFromTask(async () =>
+            {
+                CenterContainViewModel.ChangeToUserInformationSettingsViewModel(UserInfo);
+            });
 
             BuyMusicCommand =ReactiveCommand.CreateFromTask(async () =>
             {
