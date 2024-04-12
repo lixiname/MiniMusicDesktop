@@ -17,14 +17,22 @@ namespace MiniMusicDesktop.ViewModels
             get => _contentViewModel;
             set=> this.RaiseAndSetIfChanged(ref _contentViewModel, value);
         }
-        public CenterContainViewModel()
+
+        private InfoProfile _userInfo;
+        public InfoProfile UserInfo
         {
-            _contentViewModel = new CollectedViewModel();
+            get => _userInfo;
+            set => this.RaiseAndSetIfChanged(ref _userInfo, value);
+        }
+        public CenterContainViewModel(InfoProfile userInfo)
+        {
+            _userInfo= userInfo;
+            _contentViewModel = new MarketViewModel();
             
         }
         public void ChangeToCollectedViewModel()
         {
-            ContentViewModel= new CollectedViewModel();
+            ContentViewModel= new CollectedViewModel(UserInfo.Id);
         }
         public void ChangeToDownloadViewModel()
         {

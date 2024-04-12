@@ -12,19 +12,13 @@
 			   HorizontalContentAlignment="Center">
 			我的收藏
 		</Label>
-		<Panel DockPanel.Dock="Bottom">
-			<ItemsControl Margin="0 40 0 0" ItemsSource="{Binding SearchResults}">
-				<ItemsControl.ItemsPanel>
-					<ItemsPanelTemplate>
-						<WrapPanel />
-					</ItemsPanelTemplate>
-				</ItemsControl.ItemsPanel>
-				<ItemsControl.ItemTemplate>
-					<DataTemplate>
-						<views:AlbumView Margin="0 0 20 20" />
-					</DataTemplate>
-				</ItemsControl.ItemTemplate>
-			</ItemsControl>
-		</Panel>
+		<ListBox ItemsSource="{Binding SearchResults}" SelectedItem="{Binding SelectedItem}"
+				 Background="Transparent" Margin="0 20">
+			<ListBox.ItemsPanel>
+				<ItemsPanelTemplate>
+					<WrapPanel />
+				</ItemsPanelTemplate>
+			</ListBox.ItemsPanel>
+		</ListBox>
 	</DockPanel>
 </UserControl>

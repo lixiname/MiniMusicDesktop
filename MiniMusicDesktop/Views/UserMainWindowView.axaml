@@ -84,15 +84,27 @@
 					<Grid RowDefinitions="Auto Auto Auto" ColumnDefinitions="*">
 						<Button Grid.Column="0" Grid.Row="0" Width="100" HorizontalContentAlignment="Center"
 								Command="{Binding MarktetCommand}">
-							商城
+							<DockPanel >
+							<PathIcon Data="{StaticResource  data_treemap_regular}"
+									  DockPanel.Dock="Left"></PathIcon>
+							<TextBlock DockPanel.Dock="Right">商城</TextBlock>
+						</DockPanel>
 						</Button>
 						<Button Grid.Column="0" Grid.Row="1" Width="100" HorizontalContentAlignment="Center"
 								Command="{Binding CollectedCommand}">
-							收藏
+							<DockPanel >
+								<PathIcon Data="{StaticResource  data_treemap_regular}"
+										  DockPanel.Dock="Left"></PathIcon>
+								<TextBlock DockPanel.Dock="Right">收藏</TextBlock>
+							</DockPanel>
 						</Button>
 						<Button Grid.Column="0" Grid.Row="2" Width="100" HorizontalContentAlignment="Center"
 								Command="{Binding DownloadCommand}">
-							已下载
+							<DockPanel >
+								<PathIcon Data="{StaticResource  data_treemap_regular}"
+										  DockPanel.Dock="Left"></PathIcon>
+								<TextBlock DockPanel.Dock="Right">已下载</TextBlock>
+							</DockPanel>
 						</Button>
 						
 					</Grid>

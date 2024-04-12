@@ -4,13 +4,15 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reactive;
 using System.Reactive.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MiniMusicDesktop.ViewModels
 {
-    public class MarketViewModel : ViewModelBase
+    public class MUserViewModel : ViewModelBase
     {
         private string? _searchText;
         private bool _isBusy;
@@ -25,57 +27,49 @@ namespace MiniMusicDesktop.ViewModels
             set => this.RaiseAndSetIfChanged(ref _isBusy, value);
         }
 
-        public ObservableCollection<MusicItemViewModel> SearchResults { get; } = new();
+        private UserItemViewModel? _selectedItem;
 
+        public ObservableCollection<UserItemViewModel> SearchResults { get; } = new();
 
-        private MusicItemViewModel? _selectedItem;
-        public MusicItemViewModel? SelectedItem
+        public UserItemViewModel? SelectedItem
         {
             get => _selectedItem;
             set => this.RaiseAndSetIfChanged(ref _selectedItem, value);
         }
-
-        public MarketViewModel()
+        public MUserViewModel()
         {
-            
+            ChangeUserStateCommand = ReactiveCommand.Create(() =>
+            {
+                return SelectedItem;
+            });
+
             this.WhenAnyValue(x => x.SearchText)
                  .Throttle(TimeSpan.FromMilliseconds(400))
                  .ObserveOn(RxApp.MainThreadScheduler)
                  .Subscribe(DoSearch!);
-            //InitSearch();
-
-        }
-        
-        private async void InitSearch()
-        {
-            SearchResults.Clear();
-            var musics = await Music.SearchAsync();
-            foreach (var item in musics)
-            {
-                var vm = new MusicItemViewModel(item);
-                SearchResults.Add(vm);
-            }
-            //LoadCovers();
 
         }
         private async void DoSearch(string s)
         {
             IsBusy = true;
             SearchResults.Clear();
-
+            
             if (!string.IsNullOrWhiteSpace(s))
             {
-                var musics = await Music.SearchAsync();
+                var users = await User.UserListAsync();
 
-                foreach (var item in musics)
+                foreach (var item in users)
                 {
-                    var vm = new MusicItemViewModel(item);
+                    var vm = new UserItemViewModel(item);
                     SearchResults.Add(vm);
-                }
-                LoadCovers();
+                }   
+                //LoadCovers();
+                
 
             }
             IsBusy = false;
+
+
         }
         private async void LoadCovers()
         {
@@ -85,5 +79,7 @@ namespace MiniMusicDesktop.ViewModels
 
             }
         }
+        
+        public ReactiveCommand<Unit, UserItemViewModel?> ChangeUserStateCommand { get; }
     }
 }

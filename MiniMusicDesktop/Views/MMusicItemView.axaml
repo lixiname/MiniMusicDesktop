@@ -1,0 +1,54 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:MiniMusicDesktop.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MiniMusicDesktop.Views.MMusicItemView"
+	         x:DataType="vm:MMusicItemViewModel">
+	
+	
+	<StackPanel Spacing="5" Width="128" Height="" Margin="10">
+		<Border CornerRadius="20" ClipToBounds="True">
+			<Panel Background="Gold">
+				<Panel Height="128" >
+					<Image Width="128" Height="128"  Source="{Binding Cover}"/>
+				</Panel>
+			</Panel>
+		</Border>
+		<TextBlock HorizontalAlignment="Center" Text="头像" Foreground=""
+				   FontSize=""/>
+		<Border CornerRadius="20" ClipToBounds="True" >
+			<DockPanel>
+				<TextBlock HorizontalAlignment="Center" Text="{Binding Name}"
+						DockPanel.Dock="Left"/>
+				<TextBlock HorizontalAlignment="Center" Text="{Binding Author}"
+							DockPanel.Dock="Right"/>
+			</DockPanel>
+		</Border>
+		<Border CornerRadius="20" ClipToBounds="True" >
+			<DockPanel>
+				<TextBlock HorizontalAlignment="Center" Text="{Binding AgreedNum}"
+						DockPanel.Dock="Left"/>
+				<TextBlock HorizontalAlignment="Center" Text="{Binding DownLoadNum}"
+							DockPanel.Dock="Right"/>
+			</DockPanel>
+		</Border>
+		<Border CornerRadius="20" ClipToBounds="True" >
+			<DockPanel>
+				<TextBlock HorizontalAlignment="Center" Text="{Binding TalkNum}"
+						DockPanel.Dock="Left"/>
+				<TextBlock HorizontalAlignment="Center" Text="{Binding Review}"
+							DockPanel.Dock="Right"/>
+			</DockPanel>
+		</Border>
+
+		<DockPanel>
+			<Button DockPanel.Dock="Left"  VerticalAlignment="Center" HorizontalAlignment="Center" Background="Red">停用账号</Button>
+			<Button  DockPanel.Dock="Right" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Green">恢复</Button>
+
+		</DockPanel>
+
+	</StackPanel>
+
+</UserControl>

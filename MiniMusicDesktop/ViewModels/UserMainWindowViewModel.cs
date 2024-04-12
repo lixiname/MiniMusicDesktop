@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reactive;
 using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,10 @@ namespace MiniMusicDesktop.ViewModels
         public ICommand DownloadCommand { get; }
         public ICommand CollectedCommand { get; }
         public ICommand SettingsCommand { get; }
-        public ICommand UserInformationSettingsCommand { get; }
+        public ReactiveCommand<Unit, Unit> UserInformationSettingsCommand { get; }
+
+
+
         public Interaction<SearchMusicViewModel, AlbumViewModel?> ShowDialog { get; }
 
         private CenterContainViewModel _centerContainViewModel;
@@ -39,7 +43,7 @@ namespace MiniMusicDesktop.ViewModels
         public UserMainWindowViewModel(InfoProfile userInfo) 
         {
             _userInfo = userInfo;
-           _centerContainViewModel = new CenterContainViewModel();
+           _centerContainViewModel = new CenterContainViewModel(_userInfo);
             
             MarktetCommand = ReactiveCommand.CreateFromTask(async () =>
             {
@@ -70,7 +74,7 @@ namespace MiniMusicDesktop.ViewModels
 
             BuyMusicCommand =ReactiveCommand.CreateFromTask(async () =>
             {
-                
+
                 var store = new SearchMusicViewModel();
                 
                 var result = await ShowDialog.Handle(store);
@@ -80,6 +84,10 @@ namespace MiniMusicDesktop.ViewModels
                     Albums.Add(result);
                 }
             });
+
+           
+
+
         }
 
         public ObservableCollection<AlbumViewModel> Albums { get; } = new();

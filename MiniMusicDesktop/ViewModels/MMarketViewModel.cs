@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MiniMusicDesktop.ViewModels
 {
-    public class MarketViewModel : ViewModelBase
+    public class MMarketViewModel : ViewModelBase
     {
         private string? _searchText;
         private bool _isBusy;
@@ -25,37 +25,23 @@ namespace MiniMusicDesktop.ViewModels
             set => this.RaiseAndSetIfChanged(ref _isBusy, value);
         }
 
-        public ObservableCollection<MusicItemViewModel> SearchResults { get; } = new();
+        public ObservableCollection<MMusicItemViewModel> SearchResults { get; } = new();
 
 
-        private MusicItemViewModel? _selectedItem;
-        public MusicItemViewModel? SelectedItem
+        private MMusicItemViewModel? _selectedItem;
+        public MMusicItemViewModel? SelectedItem
         {
             get => _selectedItem;
             set => this.RaiseAndSetIfChanged(ref _selectedItem, value);
         }
 
-        public MarketViewModel()
+        public MMarketViewModel()
         {
             
             this.WhenAnyValue(x => x.SearchText)
                  .Throttle(TimeSpan.FromMilliseconds(400))
                  .ObserveOn(RxApp.MainThreadScheduler)
                  .Subscribe(DoSearch!);
-            //InitSearch();
-
-        }
-        
-        private async void InitSearch()
-        {
-            SearchResults.Clear();
-            var musics = await Music.SearchAsync();
-            foreach (var item in musics)
-            {
-                var vm = new MusicItemViewModel(item);
-                SearchResults.Add(vm);
-            }
-            //LoadCovers();
 
         }
         private async void DoSearch(string s)
@@ -69,13 +55,15 @@ namespace MiniMusicDesktop.ViewModels
 
                 foreach (var item in musics)
                 {
-                    var vm = new MusicItemViewModel(item);
+                    var vm = new MMusicItemViewModel(item);
                     SearchResults.Add(vm);
                 }
-                LoadCovers();
+                //LoadCovers();
 
             }
             IsBusy = false;
+
+
         }
         private async void LoadCovers()
         {

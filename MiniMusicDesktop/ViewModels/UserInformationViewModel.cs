@@ -113,8 +113,8 @@ namespace MiniMusicDesktop.ViewModels
         public ICommand ChangeEmailCommand { get; }
         public ICommand ChangeNameCommand { get; }
         public ReactiveCommand<Unit, Unit> ChangeInfoCommand { get; }
+        public ReactiveCommand<Unit, Unit> LogoutCommand { get; }
         
-
         public UserInformationViewModel(InfoProfile infoProfile)
         {
             Email=infoProfile.Email ;
@@ -158,7 +158,8 @@ namespace MiniMusicDesktop.ViewModels
 
             });
 
-            
+            LogoutCommand = ReactiveCommand.Create(() => { });
+
         }
         
     }

@@ -1,0 +1,109 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:MiniMusicDesktop.ViewModels"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MiniMusicDesktop.Views.MusicItemView"
+			 x:DataType="vm:MusicItemViewModel">
+	<DockPanel>
+		<StackPanel DockPanel.Dock="Left">
+			<Border CornerRadius="20" ClipToBounds="True"
+				DockPanel.Dock="Left">
+				<Panel Background="Gold">
+					<Image Width="100" Height="100" Stretch="Uniform" Source="{Binding Cover}"/>
+					<PathIcon Height="35" Width="35" Data="{StaticResource music_regular}" />
+				</Panel>
+			</Border>
+		</StackPanel>
+
+		<Border CornerRadius="20" ClipToBounds="True" DockPanel.Dock="Right"
+				Padding="10">
+			<StackPanel  Spacing="5" Margin="10">
+				<TextBlock HorizontalAlignment="Left" Text="{Binding Name}"
+								/>
+				<StackPanel Spacing="5" Margin="10" Orientation="Horizontal">
+					<Border CornerRadius="5" ClipToBounds="True"
+							Padding="3">
+						<TextBlock  Text="{Binding Author}"/>
+					</Border>
+					<Border CornerRadius="5" ClipToBounds="True" 
+						BorderBrush="Gray"
+						BorderThickness="1"
+						Padding="3">
+						<TextBlock  Text="{Binding MusicType}"/>
+					</Border>
+				</StackPanel>
+				<Grid  ColumnDefinitions="* 2*" RowDefinitions="Auto" 
+					   ShowGridLines="False">
+					<DockPanel Grid.Column="1" Grid.Row="0" >
+						<Panel DockPanel.Dock="Right">
+							<Border
+								CornerRadius="35" ClipToBounds="True"
+								VerticalAlignment="Bottom"
+								HorizontalAlignment="Left"
+								Margin="3">
+								<Button>
+									<!--评论-->
+									<PathIcon Data="{StaticResource  chat_regular}"/>
+								</Button>
+							</Border>
+							<TextBlock  VerticalAlignment="Top"
+										HorizontalAlignment="Right"
+								Text="{Binding TalkNum}"/>
+						</Panel>
+						<Border
+								CornerRadius="35" ClipToBounds="True"
+								DockPanel.Dock="Right"
+								Margin="3">
+							<Button>
+								<!--收藏-->
+								<PathIcon Data="{StaticResource  star_edit_regular}"/>
+							</Button>
+						</Border>
+						<Panel DockPanel.Dock="Right">
+							<Border  
+								CornerRadius="35" ClipToBounds="True" 
+								VerticalAlignment="Bottom"
+								HorizontalAlignment="Left"
+								Margin="3">
+								<Button>
+									<!--下载-->
+									<PathIcon Data="{StaticResource  text_sort_ascending_regular}"/>
+								</Button>
+							</Border>
+							
+							<TextBlock  VerticalAlignment="Top"
+										HorizontalAlignment="Right"
+								Text="{Binding DownLoadNum}"/>
+						</Panel>
+						
+						<Panel DockPanel.Dock="Right">
+							<Border
+								CornerRadius="35" ClipToBounds="True"
+								VerticalAlignment="Bottom"
+								HorizontalAlignment="Left"
+								Margin="3">
+								<Button>
+									<!--点赞-->
+									<PathIcon Data="{StaticResource  heart_regular}"/>
+								</Button>
+							</Border>
+							<TextBlock  VerticalAlignment="Top"
+										HorizontalAlignment="Right"
+								Text="{Binding AgreedNum}"/>
+						</Panel>
+						
+						
+						<Panel DockPanel.Dock="Right">
+						</Panel>
+						
+					</DockPanel>
+				</Grid>
+				
+			</StackPanel>
+		</Border>
+		
+	</DockPanel>
+	
+</UserControl>

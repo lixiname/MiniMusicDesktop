@@ -31,7 +31,7 @@ namespace MiniMusicDesktop.ViewModels
         {
             await using (var imageStream = await _album.LoadCoverBitmapAsync())
             {
-                Cover = await Task.Run(() => Bitmap.DecodeToWidth(imageStream, 400));
+                //Cover = await Task.Run(() => Bitmap.DecodeToWidth(imageStream, 400));
             }
         }
     }

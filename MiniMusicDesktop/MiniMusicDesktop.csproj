@@ -22,8 +22,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\CollectedMusicItemView.axaml.cs">
+      <DependentUpon>CollectedMusicItemView.axaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\UserMainWindowView.axaml.cs">
       <DependentUpon>UserMainWindowView.axaml</DependentUpon>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\DTO\" />
   </ItemGroup>
 </Project>

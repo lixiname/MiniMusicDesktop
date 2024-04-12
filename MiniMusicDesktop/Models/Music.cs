@@ -11,15 +11,17 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using Avalonia.Media.Imaging;
 using iTunesSearch.Library.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using MiniMusicDesktop.Models.Common.Enum;
 
 namespace MiniMusicDesktop.Models
 {
     public class Music
     {
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public long Id { get; set; }
         [JsonProperty("uploadUserId")]
-        public int UploadUserId { get; set; }
+        public long UploadUserId { get; set; }
         [JsonProperty("name")]
         public string Name { get; set; }
         [JsonProperty("musicImageUrl")]
@@ -29,41 +31,84 @@ namespace MiniMusicDesktop.Models
         [JsonProperty("musicContentUrl")]
         public string? MusicContentUrl { get; set; }
         [JsonProperty("musicType")]
-        public int? MusicType { get; set; }
+        public MusicTypeEnum MusicType { get; set; }
         [JsonProperty("review")]
-        public int Review { get; set; }
+        public MusicReviewEnum Review { get; set; }
         [JsonProperty("downLoadNum")]
         public int DownLoadNum { get; set; }
         [JsonProperty("agreedNum")]
         public int AgreedNum { get; set; }
         [JsonProperty("talkNum")]
         public int TalkNum { get; set; }
-
-        private static HttpClient s_httpClient = new();
-        
+        [JsonProperty("usingNum")]
+        public int UsingNum { get; set; }
+        [JsonProperty("collectNum")]
+        public int CollectNum { get; set; }
 
         public static async Task<List<Music>> SearchAsync()
         {
-            s_httpClient.BaseAddress = new Uri("https://localhost:7151");
+            using (HttpClient s_httpClient = new())
+            {
+                s_httpClient.BaseAddress = new Uri("https://localhost:7151");
 
-            var data = await s_httpClient.GetAsync("Search");
-           
-            data.EnsureSuccessStatusCode();
-            //catch (HttpRequestException e)
-            string stringResponse = await data.Content.ReadAsStringAsync();
-            var searchResults = JsonConvert.DeserializeObject<List<Music>>(stringResponse);
-            //Text.json List<Music> searchResults = JsonSerializer.Deserialize<List<Music>>(stringResponse);
-            return searchResults;
+                var data = await s_httpClient.GetAsync("Search");
+                try
+                {
+                    data.EnsureSuccessStatusCode();
+                    //catch (HttpRequestException e)
+                    string stringResponse = await data.Content.ReadAsStringAsync();
+                    var searchResults = JsonConvert.DeserializeObject<List<Music>>(stringResponse);
+                    //Text.json List<Music> searchResults = JsonSerializer.Deserialize<List<Music>>(stringResponse);
+                    return searchResults;
+                }
+                catch (HttpRequestException e)
+                {
+                    Console.WriteLine("music List error");
+                    return new List<Music>();
+                }
+                
+            }
+                
+
+        }
+
+        public static async Task<List<Music>> SearchUserCollectedMusicAsync(long userId)
+        {
+            using (HttpClient s_httpClient = new())
+            {
+                s_httpClient.BaseAddress = new Uri("https://localhost:7151");
+
+                var data = await s_httpClient.GetAsync($"CollectSearch?UserId={userId}");
+                try
+                {
+                    data.EnsureSuccessStatusCode();
+                    //catch (HttpRequestException e)
+                    string stringResponse = await data.Content.ReadAsStringAsync();
+                    var searchResults = JsonConvert.DeserializeObject<List<Music>>(stringResponse);
+                    //Text.json List<Music> searchResults = JsonSerializer.Deserialize<List<Music>>(stringResponse);
+                    return searchResults;
+                }
+                catch (HttpRequestException e)
+                {
+                    Console.WriteLine("music List error");
+                    return new List<Music>();
+                }
+
+            }
+
 
         }
 
         public async Task<Stream> LoadCoverBitmapAsync()
         {
-            var data = await s_httpClient.GetByteArrayAsync($"Image?id={Id}");
-            return new MemoryStream(data);
-
-           
-
+            using (HttpClient s_httpClient = new())
+            {
+                s_httpClient.BaseAddress = new Uri("https://localhost:7151");
+                var data = await s_httpClient.GetByteArrayAsync($"Image?id={Id}");
+                return new MemoryStream(data);
+                
+            }
+                
         }
     }
 }

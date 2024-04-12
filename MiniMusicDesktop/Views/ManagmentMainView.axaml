@@ -2,10 +2,153 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:views="clr-namespace:MiniMusicDesktop.Views"
              xmlns:vm="using:MiniMusicDesktop.ViewModels"
 			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="MiniMusicDesktop.Views.ManagmentMainView"
 			 x:DataType="vm:ManagmentMainViewModel"
 			 >
-	Welcome to mmm!
+	<Panel>
+
+	<DockPanel>
+		<DockPanel  Margin="0 40 5 0"  DockPanel.Dock="Top">
+			<Grid  ColumnDefinitions="* *" RowDefinitions="Auto Auto" ShowGridLines="True">
+				<StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
+					<!--<Button >Logo</Button>-->
+
+				</StackPanel>
+				<DockPanel Grid.Column="1" Grid.Row="0"  >
+					<Button DockPanel.Dock="Right" Margin="0 5 10 0" Background="Black" Foreground="White"
+							Command="{Binding SettingsCommand}">
+						<PathIcon Data="{StaticResource launcher_settings_regular}" ></PathIcon>
+					</Button>
+					<Button DockPanel.Dock="Right" Margin="0 5 10 0" >
+						<PathIcon Data="{StaticResource weather_moon_regular}" ></PathIcon>
+					</Button>
+					<Button DockPanel.Dock="Right" Margin="0 5 10 0">
+						<PathIcon Data="{StaticResource person_regular}" ></PathIcon>
+					</Button>
+					<TextBlock DockPanel.Dock="Right"></TextBlock>
+				</DockPanel>
+			</Grid>
+		</DockPanel>
+		<Grid DockPanel.Dock="Bottom" RowDefinitions="Auto" ColumnDefinitions="* 3* *" ShowGridLines="True" Height="0">
+			<DockPanel Grid.Column="0" Grid.Row="0" Margin="0 0 15 0">
+				<Border CornerRadius="10" ClipToBounds="True" DockPanel.Dock="Left">
+					<Panel Background="#7FFF22DD">
+						<Panel Height="30" Width="30">
+							<PathIcon Height="30" Width="30" Data="{StaticResource music_regular}" />
+						</Panel>
+					</Panel>
+				</Border>
+
+				<Button DockPanel.Dock="Right" VerticalAlignment="Center">
+					<PathIcon  Data="{StaticResource star_regular}" />
+				</Button>
+				<TextBlock DockPanel.Dock="Left" VerticalAlignment="Center">
+					music_name
+				</TextBlock>
+
+
+			</DockPanel>
+			<DockPanel Grid.Column="1" Grid.Row="0" Margin="15 0 15 0">
+				<Grid DockPanel.Dock="Top"  RowDefinitions="Auto" ColumnDefinitions="* * *">
+					<DockPanel Grid.Column="1" Grid.Row="0">
+						<Button  DockPanel.Dock="Right">
+							start
+						</Button>
+					</DockPanel>
+
+
+				</Grid>
+				<DockPanel DockPanel.Dock="Bottom" >
+					<TextBlock VerticalAlignment="Center">progess</TextBlock>
+
+				</DockPanel>
+			</DockPanel>
+			<DockPanel Grid.Column="2" Grid.Row="0" Margin="15 0 15 0">
+				<TextBlock DockPanel.Dock="Left" VerticalAlignment="Center">local_label</TextBlock>
+				<Button DockPanel.Dock="Left" Margin="15 0 0 0">sound_button</Button>
+			</DockPanel>
+		</Grid>
+		<DockPanel DockPanel.Dock="Bottom">
+			<Panel DockPanel.Dock="Left" Background="Black" Width="200">
+				<Grid RowDefinitions="Auto Auto Auto  Auto  Auto" ColumnDefinitions="200" >
+					
+					<Button Grid.Column="0" Grid.Row="0" Width="200" HorizontalContentAlignment="Center"
+							VerticalAlignment="Center"
+							Height="30"
+							Margin="0 20 0 5"
+							Command="{Binding MarktetManagementCommand}">
+						<DockPanel >
+							<PathIcon Data="{StaticResource  data_treemap_regular}"
+									  DockPanel.Dock="Left"></PathIcon>
+							<TextBlock DockPanel.Dock="Right">音乐清单管理</TextBlock>
+						</DockPanel>
+					</Button>
+
+					<Button Grid.Column="0" Grid.Row="1" Width="200" HorizontalContentAlignment="Center"
+							Height="30"
+							Margin="0 5 0 5"
+							Command="{Binding RemarkManagementCommand}">
+						<DockPanel >
+
+							<PathIcon Data="{StaticResource  tabs_regular}"
+									  DockPanel.Dock="Left"></PathIcon>
+							<TextBlock
+								DockPanel.Dock="Right">用户评论记录管理</TextBlock>
+
+						</DockPanel>
+
+					</Button>
+					<Button Grid.Column="0" Grid.Row="2" Width="200" HorizontalContentAlignment="Center"
+							Height="30"
+							Margin="0 5 0 5"
+							Command="{Binding UserManagementCommand}">
+
+						<DockPanel>
+							<PathIcon Data="{StaticResource  whiteboard_regular}"
+									  DockPanel.Dock="Left"></PathIcon>
+							<TextBlock
+								DockPanel.Dock="Right">用户账号管理</TextBlock>
+
+						</DockPanel>
+					</Button>
+
+				</Grid>
+			</Panel>
+			<DockPanel DockPanel.Dock="Right">
+				<Panel Margin="20" DockPanel.Dock="Right" Width="50">
+					<Button HorizontalAlignment="Right" VerticalAlignment="Top"
+						Command="{Binding BuyMusicCommand}">
+						<PathIcon Data="{StaticResource store_microsoft_regular}" />
+					</Button>
+					<ItemsControl Margin="0 40 0 0" ItemsSource="{Binding Albums}">
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<WrapPanel />
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<views:AlbumView Margin="0 0 20 20" />
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+				</Panel>
+				<Panel DockPanel.Dock="Left">
+					<views:CenterContainView DataContext="{Binding CenterContainViewModel}"/>
+				</Panel>
+
+			</DockPanel>
+
+
+
+		</DockPanel>
+
+	</DockPanel>
+
+
+</Panel>
 </UserControl>

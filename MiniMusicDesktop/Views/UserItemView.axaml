@@ -1,0 +1,54 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:MiniMusicDesktop.ViewModels"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MiniMusicDesktop.Views.UserItemView"
+			 x:DataType="vm:UserItemViewModel">
+	
+	<Grid Width="400" Height="" Margin="10" 
+		  RowDefinitions="Auto" 
+		  ColumnDefinitions="* * * * * * * ">
+		
+		<Border CornerRadius="20" ClipToBounds="True" 
+				Grid.Column="0" Grid.Row="0">
+			<Panel Background="Gold">
+				<Panel Height="128" >
+					<Image Width="128" Height="128"  Source="{Binding Cover}"/>
+				</Panel>
+			</Panel>
+		</Border>
+
+		<TextBlock HorizontalAlignment="Center" 
+				   Text="{Binding UId}"
+				   Grid.Column="1" Grid.Row="0"/>
+
+		<TextBlock HorizontalAlignment="Center"
+				   Text="{Binding Name}"
+				   Grid.Column="2" Grid.Row="0"/>
+
+		<TextBlock HorizontalAlignment="Center"
+				   Text="{Binding Email}"
+				   Grid.Column="3" Grid.Row="0"/>
+
+		<TextBlock HorizontalAlignment="Center"
+				   Text="{Binding Phone}"
+				   Grid.Column="4" Grid.Row="0"/>
+
+		<TextBox HorizontalAlignment="Center"
+				   Text="{Binding Password}"
+				   IsEnabled="False"
+			       PasswordChar="*"
+				   Grid.Column="5" Grid.Row="0"/>
+		
+		<DockPanel Grid.Column="6" Grid.Row="0">
+			<Button  DockPanel.Dock="Left" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Green">恢复</Button>
+			<Button DockPanel.Dock="Right"  VerticalAlignment="Center" HorizontalAlignment="Center" Background="Red">停用账号</Button>
+			
+
+		</DockPanel>
+
+	</Grid>
+
+</UserControl>
