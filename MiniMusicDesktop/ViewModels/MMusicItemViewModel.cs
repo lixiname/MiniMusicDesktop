@@ -1,5 +1,6 @@
 ﻿using Avalonia.Media.Imaging;
 using MiniMusicDesktop.Models;
+using MiniMusicDesktop.Models.Common.Const;
 using MiniMusicDesktop.Models.Common.Enum;
 using ReactiveUI;
 using System;
@@ -24,13 +25,64 @@ namespace MiniMusicDesktop.ViewModels
 
         public string Author => _item.Author;
 
+        public long UploadUserId => _item.UploadUserId;
         public int AgreedNum => _item.AgreedNum;
 
         public int DownLoadNum => _item.DownLoadNum;
 
         public int TalkNum => _item.TalkNum;
+        public int CollectNum => _item.CollectNum;
+        public int UsingNum => _item.UsingNum;
+        
+        public string MusicType
+        {
+            get
+            {
+                switch (_item.MusicType)
+                {
+                    case MusicTypeEnum.Type0: return MusicTypeConst.Type0;
+                    case MusicTypeEnum.Type1: return MusicTypeConst.Type1;
+                    case MusicTypeEnum.Type2: return MusicTypeConst.Type2;
+                    case MusicTypeEnum.Type3: return MusicTypeConst.Type3;
+                    default: return MusicTypeConst.Type0;
+                }
 
-        public MusicReviewEnum Review => _item.Review;
+
+            }
+        }
+
+        public string Valid
+        {
+            get
+            {
+                if (_item.Review==MusicReviewEnum.Access)
+                {
+                    return "驳回";
+                }
+                else 
+                {
+                    return "无";
+                }
+            }
+        }
+
+        public string Review
+        {
+            get
+            {
+                switch (_item.Review)
+                {
+                    case MusicReviewEnum.Await: return MusicReviewConst.Await;
+                    case MusicReviewEnum.Access: return MusicReviewConst.Access;
+                    case MusicReviewEnum.Reject: return MusicReviewConst.Reject;
+                    
+                    default: return MusicReviewConst.Await;
+                }
+
+
+            }
+        }
+
 
         private Bitmap? _cover;
 

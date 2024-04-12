@@ -1,5 +1,6 @@
 ﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
 using MiniMusicDesktop.Models.Common;
+using MiniMusicDesktop.Models.Common.Enum;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,8 @@ namespace MiniMusicDesktop.Models
         public string? Name { get; set; }
         [JsonProperty("userId")]
         public string? UserId { get; set; }
+        [JsonProperty("state")]
+        public UserStateEnum State { get; set; }
 
         public static async Task<User> LoginAsync(string userId, string password)
         {

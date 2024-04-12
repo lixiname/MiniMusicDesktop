@@ -1,5 +1,7 @@
 ﻿using Avalonia.Media.Imaging;
 using MiniMusicDesktop.Models;
+using MiniMusicDesktop.Models.Common.Const;
+using MiniMusicDesktop.Models.Common.Enum;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -17,7 +19,8 @@ namespace MiniMusicDesktop.ViewModels
             _item = item;
         }
 
-        public string Password=>_item.Password;
+        public long Id => _item.Id;
+        public string Password=> "长度"+_item.Password.Length.ToString();
        
         public string UId => _item.UserId;
         
@@ -28,7 +31,42 @@ namespace MiniMusicDesktop.ViewModels
         public string Email => _item.Email;
 
         public string Phone=>_item.Phone;
-        
+
+       
+        public string State
+        {
+            get
+            {
+                if (_item.State==UserStateEnum.Valid)
+                {
+                    return UserStateConst.Valid;
+                }
+                else
+                {
+                    return UserStateConst.InValid;
+                }
+              
+            }
+        }
+
+        public string Valid
+        {
+            get
+            {
+                if (_item.State == UserStateEnum.Valid)
+                {
+                    return UserStateManagementConst.InValid;
+                }
+                else
+                {
+                    return UserStateManagementConst.Valid;
+                }
+
+            }
+        }
+
+
+
         private Bitmap? _cover;
 
         public Bitmap? Cover

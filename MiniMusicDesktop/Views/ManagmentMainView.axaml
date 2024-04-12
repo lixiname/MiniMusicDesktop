@@ -14,8 +14,7 @@
 		<DockPanel  Margin="0 40 5 0"  DockPanel.Dock="Top">
 			<Grid  ColumnDefinitions="* *" RowDefinitions="Auto Auto" ShowGridLines="True">
 				<StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
-					<!--<Button >Logo</Button>-->
-
+					<TextBlock >Logo</TextBlock>
 				</StackPanel>
 				<DockPanel Grid.Column="1" Grid.Row="0"  >
 					<Button DockPanel.Dock="Right" Margin="0 5 10 0" Background="Black" Foreground="White"

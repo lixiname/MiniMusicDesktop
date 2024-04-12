@@ -21,7 +21,7 @@ namespace MiniMusicDesktop.ViewModels
         }
         public MCenterContainViewModel()
         {
-            _contentViewModel = new MarketViewModel();
+            _contentViewModel = new MMarketViewModel();
 
         }
         public void ChangeToMarketManagementViewModel()

@@ -37,11 +37,23 @@ namespace MiniMusicDesktop.ViewModels
 
         public MMarketViewModel()
         {
-            
+            //InitSearch();
             this.WhenAnyValue(x => x.SearchText)
                  .Throttle(TimeSpan.FromMilliseconds(400))
                  .ObserveOn(RxApp.MainThreadScheduler)
                  .Subscribe(DoSearch!);
+
+        }
+        private async void InitSearch()
+        {
+            
+
+            var musics = await Music.SearchAsync();
+            foreach (var item in musics)
+            {
+                var add = new MMusicItemViewModel(item);
+                SearchResults.Add(add);
+            }
 
         }
         private async void DoSearch(string s)
@@ -55,8 +67,8 @@ namespace MiniMusicDesktop.ViewModels
 
                 foreach (var item in musics)
                 {
-                    var vm = new MMusicItemViewModel(item);
-                    SearchResults.Add(vm);
+                    var add = new MMusicItemViewModel(item);
+                    SearchResults.Add(add);
                 }
                 //LoadCovers();
 

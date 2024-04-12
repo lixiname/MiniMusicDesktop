@@ -48,7 +48,7 @@ namespace MiniMusicDesktop.ViewModels
         
         private async void InitSearch()
         {
-            SearchResults.Clear();
+            //SearchResults.Clear();
             var musics = await Music.SearchAsync();
             foreach (var item in musics)
             {

@@ -15,6 +15,12 @@ namespace MiniMusicDesktop.Models.Common.Const
 
         
     }
+    public class MusicReviewConst
+    {
+        public const string Reject = "驳回";
+        public const string Access = "通过";
+        public const string Await = "未处理";
+    }
 
-    
+
 }

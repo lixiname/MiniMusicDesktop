@@ -18,6 +18,7 @@ namespace MiniMusicDesktop.Models
 {
     public class Music
     {
+       
         [JsonProperty("id")]
         public long Id { get; set; }
         [JsonProperty("uploadUserId")]
@@ -45,6 +46,8 @@ namespace MiniMusicDesktop.Models
         [JsonProperty("collectNum")]
         public int CollectNum { get; set; }
 
+
+        
         public static async Task<List<Music>> SearchAsync()
         {
             using (HttpClient s_httpClient = new())
