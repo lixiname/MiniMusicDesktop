@@ -54,7 +54,7 @@
 								Margin="3">
 								<Button>
 									<!--下载-->
-									<PathIcon Data="{StaticResource  save_regular}"/>
+									<PathIcon Data="{StaticResource  arrow_down_regular}"/>
 								</Button>
 							</Border>
 
@@ -88,7 +88,7 @@
 								Margin="3">
 								<Button>
 									<!--点赞-->
-									<PathIcon Data="{StaticResource  heart_regular}"/>
+									<PathIcon Data="{StaticResource  thumb_like_regular}"/>
 								</Button>
 							</Border>
 							<TextBlock  VerticalAlignment="Top"

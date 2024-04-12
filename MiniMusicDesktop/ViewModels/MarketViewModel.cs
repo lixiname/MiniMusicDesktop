@@ -49,7 +49,7 @@ namespace MiniMusicDesktop.ViewModels
         private async void InitSearch()
         {
             //SearchResults.Clear();
-            var musics = await Music.SearchAsync();
+            var musics = await Music.SearchReviewAsync();
             foreach (var item in musics)
             {
                 var vm = new MusicItemViewModel(item);
@@ -65,7 +65,7 @@ namespace MiniMusicDesktop.ViewModels
 
             if (!string.IsNullOrWhiteSpace(s))
             {
-                var musics = await Music.SearchAsync();
+                var musics = await Music.SearchReviewAsync();
 
                 foreach (var item in musics)
                 {

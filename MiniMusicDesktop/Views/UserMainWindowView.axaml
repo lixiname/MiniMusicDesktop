@@ -84,10 +84,10 @@
 						<Button Grid.Column="0" Grid.Row="0" Width="100" HorizontalContentAlignment="Center"
 								Command="{Binding MarktetCommand}">
 							<DockPanel >
-							<PathIcon Data="{StaticResource  data_treemap_regular}"
-									  DockPanel.Dock="Left"></PathIcon>
-							<TextBlock DockPanel.Dock="Right">歌单</TextBlock>
-						</DockPanel>
+								<PathIcon Data="{StaticResource  data_treemap_regular}"
+										  DockPanel.Dock="Left"></PathIcon>
+								<TextBlock DockPanel.Dock="Right">歌单</TextBlock>
+							</DockPanel>
 						</Button>
 						<Button Grid.Column="0" Grid.Row="1" Width="100" HorizontalContentAlignment="Center"
 								Command="{Binding CollectedCommand}">

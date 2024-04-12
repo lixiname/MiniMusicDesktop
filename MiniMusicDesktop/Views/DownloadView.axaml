@@ -6,5 +6,53 @@
 			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="MiniMusicDesktop.Views.DownloadView"
 			 x:DataType="vm:DownloadViewModel">
-  Welcome to download!
+	<DockPanel>
+		<DockPanel  Margin="0 40 5 0"  DockPanel.Dock="Top">
+			<Grid  ColumnDefinitions="* *" RowDefinitions="Auto Auto" >
+				<DockPanel Grid.Column="0" Grid.Row="0"  >
+					<Button DockPanel.Dock="Left" Margin="0 5 5 0"  >
+						<DockPanel >
+							<PathIcon Data="{StaticResource  checkmark_underline_circle_regular}"
+									  DockPanel.Dock="Left"></PathIcon>
+							<TextBlock DockPanel.Dock="Right">已下载</TextBlock>
+						</DockPanel>
+						<Button.Background>
+							<SolidColorBrush Color="Gray"/>
+						</Button.Background>
+					</Button>
+					<Button DockPanel.Dock="Left" Margin="0 5 5 0"  >
+						<DockPanel >
+							<PathIcon Data="{StaticResource  arrow_clockwise_regular}"
+									  DockPanel.Dock="Left"></PathIcon>
+							<TextBlock DockPanel.Dock="Right">正在下载</TextBlock>
+						</DockPanel>
+						<Button.Background>
+							<SolidColorBrush Color="Gray"/>
+						</Button.Background>
+					</Button>
+					<TextBlock DockPanel.Dock="Right"></TextBlock>
+				</DockPanel>
+				<DockPanel Grid.Column="1" Grid.Row="0"  >
+					<Button DockPanel.Dock="Right" Margin="0 5 10 0"
+							Command="{Binding }">
+						<DockPanel >
+							<PathIcon Data="{StaticResource  folder_open_regular}"
+									  DockPanel.Dock="Right"></PathIcon>
+							<TextBlock DockPanel.Dock="Left">打开本地目录</TextBlock>
+						</DockPanel>
+					</Button>
+					<TextBlock DockPanel.Dock="Right"></TextBlock>
+				</DockPanel>
+			</Grid>
+		</DockPanel>
+		
+		<ListBox ItemsSource="{Binding SearchResults}" SelectedItem="{Binding SelectedItem}"
+				 Background="Transparent" Margin="0 20">
+			<ListBox.ItemsPanel>
+				<ItemsPanelTemplate>
+					<WrapPanel />
+				</ItemsPanelTemplate>
+			</ListBox.ItemsPanel>
+		</ListBox>
+	</DockPanel>
 </UserControl>

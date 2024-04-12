@@ -75,6 +75,36 @@ namespace MiniMusicDesktop.Models
 
         }
 
+
+        public static async Task<List<Music>> SearchReviewAsync()
+        {
+            using (HttpClient s_httpClient = new())
+            {
+                s_httpClient.BaseAddress = new Uri("https://localhost:7151");
+
+                var data = await s_httpClient.GetAsync("SearchReview");
+                try
+                {
+                    data.EnsureSuccessStatusCode();
+                    //catch (HttpRequestException e)
+                    string stringResponse = await data.Content.ReadAsStringAsync();
+                    var searchResults = JsonConvert.DeserializeObject<List<Music>>(stringResponse);
+                    //Text.json List<Music> searchResults = JsonSerializer.Deserialize<List<Music>>(stringResponse);
+                    return searchResults;
+                }
+                catch (HttpRequestException e)
+                {
+                    Console.WriteLine("review music List error");
+                    return new List<Music>();
+                }
+
+            }
+
+
+        }
+
+
+
         public static async Task<List<Music>> SearchUserCollectedMusicAsync(long userId)
         {
             using (HttpClient s_httpClient = new())
