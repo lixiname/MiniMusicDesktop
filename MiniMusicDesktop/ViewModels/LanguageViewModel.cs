@@ -1,4 +1,6 @@
 ﻿
+using MiniMusicDesktop.Models.Common.Const;
+using MiniMusicDesktop.Models.Common.Enum;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -20,9 +22,56 @@ namespace MiniMusicDesktop.ViewModels
             get => _languageSettings;
             set => this.RaiseAndSetIfChanged(ref _languageSettings, value);
         }
+
+        private CultureEnum _selectedIndex;
+        public CultureEnum SelectedIndex
+        {
+            get => _selectedIndex;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _selectedIndex, value);
+                _changeCurrentCulture();
+
+            }
+        }
+
+        private void _changeCurrentCulture()
+        {
+            string culture;
+            if(SelectedIndex== CultureEnum.zh_Hans)
+            {
+                culture = CultureConstant.zh_Hans;
+            }
+            else if (SelectedIndex == CultureEnum.zh_HK)
+            {
+                culture = CultureConstant.zh_HK;
+            }
+            else if (SelectedIndex == CultureEnum.en_US)
+            {
+                culture = CultureConstant.en_US;
+            }
+            else if (SelectedIndex == CultureEnum.fr_FR)
+            {
+                culture = CultureConstant.fr_FR;
+            }
+            else  
+            {
+                culture = CultureConstant.ru_RU;
+            }
+            CultureInfo newCulture = new CultureInfo(culture);
+            Thread.CurrentThread.CurrentCulture = newCulture;
+            Thread.CurrentThread.CurrentUICulture = newCulture;
+            Assembly asm = Assembly.GetExecutingAssembly();
+            ResourceManager rm = new ResourceManager("MiniMusicDesktop.Languages",
+                                                     typeof(LanguageViewModel).Assembly);
+            LanguagesSettings = String.Format("{0}", rm.GetString("LanguagesSettings"));
+        }
+
+        
+
         public LanguageViewModel()
         {
-
+            _selectedIndex = 0;
             string[] cultures = { "en-US", "fr-FR", "ru-RU", "zh-Hans" , "ja-JP" };
             //string[] cultures = { "fr-FR", "ru-RU" };
             Random rnd = new Random();
@@ -40,7 +89,7 @@ namespace MiniMusicDesktop.ViewModels
                 string greeting = String.Format("The current culture is {0}.\n {1}",
                                                 Thread.CurrentThread.CurrentUICulture.Name,
                                                 rm.GetString("LanguagesSettings"));
-                LanguagesSettings = greeting;
+                LanguagesSettings = String.Format("{0}", rm.GetString("LanguagesSettings"));
 
                var s= MiniMusicDesktop.Properties.Resources.String1;
               

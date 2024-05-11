@@ -22,7 +22,8 @@
 			<StackPanel>
 				<Label  Padding="10" 
 						Content="{Binding LanguagesSettings}"/>
-				<ComboBox Width="100" Margin="20">
+				<ComboBox Width="100" Margin="20"
+						  SelectedIndex="{Binding SelectedIndex}">
 					<ComboBoxItem>
 						简体中文
 					</ComboBoxItem>
@@ -32,6 +33,16 @@
 					<ComboBoxItem>
 						English
 					</ComboBoxItem>
+					<ComboBoxItem>
+						日语
+					</ComboBoxItem>
+					<ComboBoxItem>
+						法语
+					</ComboBoxItem>
+					<ComboBoxItem>
+						俄语
+					</ComboBoxItem>
+				
 				</ComboBox>
 
 			</StackPanel>

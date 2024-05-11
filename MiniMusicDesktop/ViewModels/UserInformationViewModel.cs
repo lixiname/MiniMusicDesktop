@@ -1,4 +1,5 @@
-﻿using MiniMusicDesktop.Models;
+﻿using iTunesSearch.Library.Models;
+using MiniMusicDesktop.Models;
 using MiniMusicDesktop.Models.Common;
 using ReactiveUI;
 using System;
@@ -114,7 +115,9 @@ namespace MiniMusicDesktop.ViewModels
         public ICommand ChangeNameCommand { get; }
         public ReactiveCommand<Unit, Unit> ChangeInfoCommand { get; }
         public ReactiveCommand<Unit, Unit> LogoutCommand { get; }
-        
+
+        public Interaction<MessageSuccessViewModel, AlbumViewModel?> ShowDialog { get; }
+
         public UserInformationViewModel(InfoProfile infoProfile)
         {
             Email=infoProfile.Email ;
@@ -139,7 +142,7 @@ namespace MiniMusicDesktop.ViewModels
             {
                 NameIsEnabled = !NameIsEnabled;
             });
-
+            ShowDialog = new Interaction<MessageSuccessViewModel, AlbumViewModel?>();
             ChangeInfoCommand = ReactiveCommand.CreateFromTask(async () =>
             {
                 var info=await User.UpdateInfoAsync(UId,OldPassword,NewPassword,Email,
@@ -150,6 +153,11 @@ namespace MiniMusicDesktop.ViewModels
                     Phone = info.Phone;
                     Name = info.Name;
                     ProfilePictureUrl = info.ProfilePictureUrl;
+                    //MessageBox.AvaloniaMessageBoxParams.Show();
+                    //var store = new MessageSuccessViewModel();
+
+                    //await ShowDialog.Handle(store);
+
                 }
                 else
                 {

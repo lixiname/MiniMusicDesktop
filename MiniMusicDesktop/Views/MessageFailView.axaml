@@ -1,0 +1,67 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="MiniMusicDesktop.Views.MessageFailView"
+        Title="MessageFailView">
+	<Panel>
+		<ExperimentalAcrylicBorder IsHitTestVisible="False">
+			<ExperimentalAcrylicBorder.Material>
+				<ExperimentalAcrylicMaterial
+                    BackgroundSource="Digger"
+                    TintColor="Black"
+                    TintOpacity="1"
+                    MaterialOpacity="0.65" />
+			</ExperimentalAcrylicBorder.Material>
+		</ExperimentalAcrylicBorder>
+		<Panel>
+			<DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="300" Height="300">
+
+
+				<UniformGrid DockPanel.Dock="Bottom" Rows="1" Columns="2">
+					<Button Grid.Column="0" Grid.Row="0"
+							HorizontalAlignment="Center"
+							HorizontalContentAlignment="Center"
+							Command="{Binding SubmitCommand}"
+							Width="80"
+							CornerRadius="10">确认</Button>
+					<Button Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center"
+							Command="{Binding QuitCommand}"
+							HorizontalContentAlignment="Center"
+							Width="80"
+							Background="Black"
+							CornerRadius="10">返回</Button>
+				</UniformGrid>
+				
+				<Grid ColumnDefinitions="* * *" RowDefinitions="*"
+					  Height="100" Width="400"
+					  DockPanel.Dock="Bottom">
+					
+					<Border
+						Grid.Column="1" Grid.Row="0"
+						
+			BorderBrush="Black"
+			BorderThickness="1"
+			CornerRadius="8"
+			Padding="2" Margin="10">
+						<Label
+							 Content="成功">
+						</Label>
+					</Border>
+
+				</Grid>
+				<Panel DockPanel.Dock="Bottom">
+					<Border Background="Gainsboro"
+			BorderBrush="Black"
+			BorderThickness="2"
+			CornerRadius="8"
+			Padding="10" Margin="10" Height="50">
+						<TextBlock HorizontalAlignment="Center"
+								   VerticalAlignment="Center" Foreground="Black">消息提示</TextBlock>
+					</Border>
+				</Panel>
+			</DockPanel>
+		</Panel>
+	</Panel>
+</Window>

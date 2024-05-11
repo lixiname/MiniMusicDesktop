@@ -118,6 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="LanguagesSettings" xml:space="preserve">
-    <value>言語お設定</value>
+    <value>語言設置</value>
   </data>
 </root>
