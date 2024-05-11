@@ -40,8 +40,34 @@ namespace MiniMusicDesktop.ViewModels
             set => this.RaiseAndSetIfChanged(ref _userInfo, value);
         }
 
+        private string _currentMusicName;
+        public string CurrentMusicName
+        {
+            get => _currentMusicName;
+            set => this.RaiseAndSetIfChanged(ref _currentMusicName, value);
+        }
+        private string _startTime;
+        public string StartTime
+        {
+            get => _startTime;
+            set => this.RaiseAndSetIfChanged(ref _startTime, value);
+        }
+
+        private string _endTime;
+        public string EndTime
+        {
+            get => _endTime;
+            set => this.RaiseAndSetIfChanged(ref _endTime, value);
+        }
+
+        
+
+
         public UserMainWindowViewModel(InfoProfile userInfo) 
         {
+            _currentMusicName= "音乐1";
+            _startTime = "00:00";
+            _endTime = "04:00";
             _userInfo = userInfo;
            _centerContainViewModel = new CenterContainViewModel(_userInfo);
             

@@ -4,5 +4,24 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="MiniMusicDesktop.Views.MRemarkView">
-  Welcome to Avalonia! remarkManagement
+	<DockPanel>
+		<StackPanel DockPanel.Dock="Top">
+			<TextBox Text="{Binding SearchText}" Watermark="查找用户...." />
+			<ProgressBar IsIndeterminate="True" IsVisible="{Binding IsBusy}" />
+		</StackPanel>
+		<DataGrid Margin="20" ItemsSource="{Binding SearchResults}"
+          AutoGenerateColumns="False" IsReadOnly="True"
+		  GridLinesVisibility="All"
+          BorderThickness="1" BorderBrush="Gray" >
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="用户ID"  Binding="{Binding Id}"/>
+				<DataGridTextColumn Header="用户UID"  Binding="{Binding UId}"/>
+				<DataGridTextColumn Header="用户昵称" Binding="{Binding Name}" />
+				<DataGridTextColumn Header="评论内容" />
+				<DataGridTextColumn Header="审核状态" Binding="{Binding State}" />
+				<DataGridTextColumn Header="可进行操作" Binding="{Binding Valid}" />
+
+			</DataGrid.Columns>
+		</DataGrid>
+	</DockPanel>
 </UserControl>

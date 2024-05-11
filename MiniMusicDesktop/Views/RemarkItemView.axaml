@@ -1,0 +1,73 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:MiniMusicDesktop.ViewModels"
+			 xmlns:views="clr-namespace:MiniMusicDesktop.Views"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MiniMusicDesktop.Views.RemarkItemView"
+			 x:DataType="vm:RemarkItemViewModel">
+	<DockPanel>
+		<StackPanel DockPanel.Dock="Left">
+			<Border CornerRadius="20" ClipToBounds="True"
+				DockPanel.Dock="Left">
+				<Panel Background="Gray">
+					<Image Width="100" Height="100" Stretch="Uniform" Source="{Binding Cover}"/>
+					<PathIcon Height="35" Width="35" Data="{StaticResource person_regular}" />
+				</Panel>
+			</Border>
+		</StackPanel>
+
+		<Border CornerRadius="20" ClipToBounds="True" DockPanel.Dock="Right"
+				Padding="10">
+			<StackPanel  Spacing="5" Margin="10">
+				<TextBlock HorizontalAlignment="Left" Text="{Binding UId}"/>
+				<StackPanel Spacing="5" Margin="10" Orientation="Horizontal">
+					<Border CornerRadius="5" ClipToBounds="True"
+							Padding="3">
+						<TextBlock  Text="{Binding Name}"/>
+					</Border>
+					<Border CornerRadius="5" ClipToBounds="True"
+						BorderBrush="Gray"
+						BorderThickness="1"
+						Padding="3">
+						<TextBlock  Text="{Binding Phone}"/>
+					</Border>
+				</StackPanel>
+				<TextBlock HorizontalAlignment="Left" Text="这个歌曲内容不错，我很喜欢。"/>
+				<Grid  ColumnDefinitions="* 2*" RowDefinitions="Auto"
+					   ShowGridLines="False">
+					<DockPanel Grid.Column="1" Grid.Row="0" >
+						<Panel DockPanel.Dock="Right">
+							<Border
+								CornerRadius="35" ClipToBounds="True"
+								VerticalAlignment="Bottom"
+								HorizontalAlignment="Left"
+								Margin="3">
+								<Button>
+									<!--评论-->
+									<PathIcon Data="{StaticResource  chat_regular}"/>
+								</Button>
+							</Border>
+						</Panel>
+						<Panel DockPanel.Dock="Right">
+							<Border
+								CornerRadius="35" ClipToBounds="True"
+								VerticalAlignment="Bottom"
+								HorizontalAlignment="Left"
+								Margin="3">
+								<Button>
+									<!--点赞-->
+									<PathIcon Data="{StaticResource  thumb_like_regular}"/>
+								</Button>
+							</Border>
+						</Panel>
+						<Panel DockPanel.Dock="Right">
+						</Panel>
+					</DockPanel>
+				</Grid>
+			</StackPanel>
+		</Border>
+
+	</DockPanel>
+</UserControl>

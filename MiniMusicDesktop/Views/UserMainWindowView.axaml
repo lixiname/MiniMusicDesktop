@@ -39,45 +39,73 @@
 					</DockPanel>
 				</Grid>
 			</DockPanel>
-			<Grid DockPanel.Dock="Bottom" RowDefinitions="Auto" ColumnDefinitions="* 3* *" ShowGridLines="True" >
-				<DockPanel Grid.Column="0" Grid.Row="0" Margin="0 0 15 0">
-					<Border CornerRadius="10" ClipToBounds="True" DockPanel.Dock="Left">
-						<Panel Background="#7FFF22DD">
-							<Panel Height="30" Width="30">
-								<PathIcon Height="30" Width="30" Data="{StaticResource music_regular}" />
-							</Panel>
-						</Panel>
-					</Border>
+			<Border
+				DockPanel.Dock="Bottom"
+				BorderBrush="Gray"
+				BorderThickness="1"
+				Margin="15">
+				<Grid  RowDefinitions="Auto" ColumnDefinitions="* * 3* * *"
+				  ShowGridLines="False" >
+					<DockPanel Grid.Column="1" Grid.Row="0" Margin="0 0 15 0" VerticalAlignment="Center">
+						<StackPanel DockPanel.Dock="Left">
+							<Border CornerRadius="20" ClipToBounds="True"
+								DockPanel.Dock="Left">
+								<Panel Background="Gold">
+									<Image Width="35" Height="35" Stretch="Uniform" Source="{Binding Cover}"/>
+									<PathIcon Height="10" Width="10" Data="{StaticResource music_regular}" />
+								</Panel>
+							</Border>
+						</StackPanel>
 
-					<Button DockPanel.Dock="Right" VerticalAlignment="Center">
-						<PathIcon  Data="{StaticResource star_regular}" />
-					</Button>
-					<TextBlock DockPanel.Dock="Left" VerticalAlignment="Center">
-						music_name
-					</TextBlock>
-
-
-				</DockPanel>
-				<DockPanel Grid.Column="1" Grid.Row="0" Margin="15 0 15 0">
-					<Grid DockPanel.Dock="Top"  RowDefinitions="Auto" ColumnDefinitions="* * *">
-						<DockPanel Grid.Column="1" Grid.Row="0">
-							<Button  DockPanel.Dock="Right">
-								start
-							</Button>
-						</DockPanel>
-
-
-					</Grid>
-					<DockPanel DockPanel.Dock="Bottom" >
-						<TextBlock VerticalAlignment="Center">progess</TextBlock>
-
+						<TextBlock DockPanel.Dock="Left" Margin="5"
+										   Text="{Binding CurrentMusicName}"
+								   HorizontalAlignment="Center"/>
 					</DockPanel>
-				</DockPanel>
-				<DockPanel Grid.Column="2" Grid.Row="0" Margin="15 0 15 0">
-					<TextBlock DockPanel.Dock="Left" VerticalAlignment="Center">local_label</TextBlock>
-					<Button DockPanel.Dock="Left" Margin="15 0 0 0">sound_button</Button>
-				</DockPanel>
-			</Grid>
+					<DockPanel Grid.Column="2" Grid.Row="0" Margin="15 0 15 0">
+						<Grid DockPanel.Dock="Top"  RowDefinitions="Auto" ColumnDefinitions="* * 2* * *">
+							<Grid Grid.Column="2" Grid.Row="0"
+								  ColumnDefinitions="* * *" RowDefinitions="Auto">
+								<!--播放 -->
+								<Button  Grid.Column="0" Grid.Row="0">
+									<PathIcon  Data="{StaticResource video_clip_regular}" />
+								</Button>
+								<!--收藏 -->
+								<Button Grid.Column="1" Grid.Row="0" VerticalAlignment="Center">
+									<PathIcon  Data="{StaticResource star_regular}" />
+								</Button>
+								<!--下载 -->
+								<Button Grid.Column="2" Grid.Row="0" VerticalAlignment="Center">
+									<PathIcon  Data="{StaticResource text_sort_ascending_regular}" />
+								</Button>
+							</Grid>
+						</Grid>
+						<Grid DockPanel.Dock="Bottom" ColumnDefinitions="* Auto *" RowDefinitions="Auto">
+							<TextBlock Grid.Column="0" Grid.Row="0"
+								VerticalAlignment="Center"
+									   HorizontalAlignment="Center"
+									   Text="{Binding StartTime}"/>
+							<Slider Grid.Column="1" Grid.Row="0"
+								TickFrequency="1" Background="LightGray"
+									Width="200"  Minimum="0" Maximum="100" Value="0"/>
+							<TextBlock Grid.Column="2" Grid.Row="0"
+								VerticalAlignment="Center"
+									   HorizontalAlignment="Center"
+									   Text="{Binding EndTime}"/>
+						</Grid>
+					</DockPanel>
+					<Grid Grid.Column="3" Grid.Row="0" Margin="15 0 15 0"
+						  ColumnDefinitions="* 2*" RowDefinitions="Auto">
+						<Button Grid.Column="0" Grid.Row="0"
+								   VerticalAlignment="Center">
+							<PathIcon  Data="{StaticResource speaker_0_regular}" />
+						</Button>
+						<Slider Grid.Column="1" Grid.Row="0"
+								TickFrequency="1" Background="LightGray"
+									Width="50"  Minimum="0" Maximum="100" Value="0"/>
+					</Grid>
+				</Grid>
+			</Border>
+			
 			<DockPanel DockPanel.Dock="Bottom">
 				<Panel DockPanel.Dock="Left" Background="Black" Width="100">
 					<Grid RowDefinitions="Auto Auto Auto" ColumnDefinitions="*">

@@ -27,8 +27,11 @@ namespace MiniMusicDesktop.ViewModels
         public CenterContainViewModel(InfoProfile userInfo)
         {
             _userInfo= userInfo;
-            _contentViewModel = new MarketViewModel();
-            
+            //_contentViewModel = new MarketViewModel();
+            _contentViewModel = new RemarkViewModel();
+
+
+
         }
         public void ChangeToCollectedViewModel()
         {

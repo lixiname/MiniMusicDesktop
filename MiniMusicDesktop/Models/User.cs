@@ -1,5 +1,6 @@
 ﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
 using MiniMusicDesktop.Models.Common;
+using MiniMusicDesktop.Models.Common.Const;
 using MiniMusicDesktop.Models.Common.Enum;
 using Newtonsoft.Json;
 using System;
@@ -109,7 +110,7 @@ namespace MiniMusicDesktop.Models
 
             using (HttpClient s_httpClient = new())
             {
-                s_httpClient.BaseAddress = new Uri("https://localhost:7151");
+                s_httpClient.BaseAddress = new Uri(ConfigConstant.BaseUrl);
                 var data = new
                 {
                     UserId = userId,

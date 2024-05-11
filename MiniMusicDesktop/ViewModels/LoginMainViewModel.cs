@@ -62,7 +62,7 @@ namespace MiniMusicDesktop.ViewModels
 
             //var isUIdInputValid = this.WhenAnyValue(
             //x=>string.IsNullOrEmpty(x.Password));
-            UId = "207924710";
+            UId = "2024222213";
             Password = "123456";
             //management
             //UId = "00001";
