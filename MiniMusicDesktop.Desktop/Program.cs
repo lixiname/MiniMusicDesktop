@@ -1,6 +1,7 @@
 ﻿using System;
 
 using Avalonia;
+using Avalonia.Extensions.Media;
 using Avalonia.ReactiveUI;
 
 namespace MiniMusicDesktop.Desktop;
@@ -19,6 +20,7 @@ class Program
         => AppBuilder.Configure<App>()
             .UsePlatformDetect()
             .WithInterFont()
+            .UseVideoView()
             .LogToTrace()
             .UseReactiveUI();
 }

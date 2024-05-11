@@ -33,7 +33,7 @@ namespace MiniMusicDesktop.ViewModels
         {
             
             SearchResults.Clear();
-            var musics = await Music.SearchReviewAsync();
+            var musics = await Music.SearchReviewAsync("");
 
             foreach (var item in musics)
             {

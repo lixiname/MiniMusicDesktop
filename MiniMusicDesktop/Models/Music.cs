@@ -13,6 +13,7 @@ using Avalonia.Media.Imaging;
 using iTunesSearch.Library.Models;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using MiniMusicDesktop.Models.Common.Enum;
+using MiniMusicDesktop.Models.Common.Const;
 
 namespace MiniMusicDesktop.Models
 {
@@ -76,13 +77,17 @@ namespace MiniMusicDesktop.Models
         }
 
 
-        public static async Task<List<Music>> SearchReviewAsync()
+        public static async Task<List<Music>> SearchReviewAsync(string ?searchKey)
         {
             using (HttpClient s_httpClient = new())
             {
-                s_httpClient.BaseAddress = new Uri("https://localhost:7151");
+                s_httpClient.BaseAddress = new Uri(ConfigConstant.BaseUrl);
 
-                var data = await s_httpClient.GetAsync("SearchReview");
+                
+                string endpoint = "SearchReview";
+                string queryString = $"?searchKey={searchKey}"; 
+                string requestUrl = endpoint + queryString;
+                var data = await s_httpClient.GetAsync(requestUrl);
                 try
                 {
                     data.EnsureSuccessStatusCode();
@@ -136,7 +141,7 @@ namespace MiniMusicDesktop.Models
         {
             using (HttpClient s_httpClient = new())
             {
-                s_httpClient.BaseAddress = new Uri("https://localhost:7151");
+                s_httpClient.BaseAddress = new Uri(ConfigConstant.BaseUrl);
 
 
                 var resData = await s_httpClient.GetAsync("UserList");
@@ -164,12 +169,24 @@ namespace MiniMusicDesktop.Models
         {
             using (HttpClient s_httpClient = new())
             {
-                s_httpClient.BaseAddress = new Uri("https://localhost:7151");
+                s_httpClient.BaseAddress = new Uri(ConfigConstant.BaseUrl);
                 var data = await s_httpClient.GetByteArrayAsync($"Image?id={Id}");
                 return new MemoryStream(data);
                 
             }
                 
+        }
+
+        public async Task<Stream> LoadMediaBitmapAsync()
+        {
+            using (HttpClient s_httpClient = new())
+            {
+                s_httpClient.BaseAddress = new Uri(ConfigConstant.BaseUrl);
+                var data = await s_httpClient.GetByteArrayAsync($"Media?id={Id}");
+                return new MemoryStream(data);
+
+            }
+
         }
     }
 }

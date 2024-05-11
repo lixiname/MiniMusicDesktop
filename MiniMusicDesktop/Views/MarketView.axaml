@@ -11,6 +11,10 @@
 			<TextBox Text="{Binding SearchText}" Watermark="查找歌曲...." />
 			<ProgressBar IsIndeterminate="True" IsVisible="{Binding IsBusy}" />
 		</StackPanel>
+		<Button Content="确认播放"
+				DockPanel.Dock="Bottom"
+				HorizontalAlignment="Center"
+				Command="{Binding PlayMusicCommand}"/>
 		<ListBox ItemsSource="{Binding SearchResults}" SelectedItem="{Binding SelectedItem}"
 				 Background="Transparent" Margin="0 20">
 			<ListBox.ItemsPanel>
@@ -19,5 +23,6 @@
 				</ItemsPanelTemplate>
 			</ListBox.ItemsPanel>
 		</ListBox>
+		
 	</DockPanel>
 </UserControl>

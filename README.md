@@ -1,6 +1,6 @@
 # MiniMusicDesktop
 
-这是一个简单的音乐管理器的纯前端桌面应用程序，目前还没有全部，使用 **.NET** 旗下的 **Avalonia** 跨平台UI进行开发,其中使用的MVVM模式为ReavtiveUI。该程序提供了面向桌面的GUI图形界面（既包括web前端如VUE3或桌面前端如**Avalonia**编写的桌面前端），该程序可以和另一个仓库中的后端程序搭配使用。
+这是一个简单的音乐管理器的纯前端桌面应用程序，使用 **.NET** 旗下的 **Avalonia** 跨平台UI进行开发,其中使用的MVVM模式为ReavtiveUI。该程序提供了面向桌面的GUI图形界面（既包括web前端如VUE3或桌面前端如**Avalonia**编写的桌面前端），该程序可以和另一个仓库中的后端程序搭配使用。
 
 与音乐管理器配套的MusicManagementsMinimalAPI后端程序同样可从本人的其他仓库中得到。
 
@@ -12,15 +12,18 @@
 
 前端程序所需依赖
 
-运行环境为 **.NET**旗下的 **Avalonia** ,其次还安装了解包所需的序列化器包，均可使用NuGet进行安装，其中 **Avalonia**涉及的包很多。
+运行环境为 **.NET**旗下的 **Avalonia** ,其次还安装了报文解包所需的序列化器包，以及流媒体所依托的**LibSharpLVC**等包，均可使用NuGet进行安装，其中 **Avalonia**涉及的包很多。
 
 ```
-Avalonia  11.0.2
-Avalonia.Desktop  11.0.2
-Avalonia.Diagnostics  11.0.2
-Avalonia.Fonts.Inter  11.0.2
-Avalonia.ReactiveUI  11.0.2
-Avalonia.Themes.Fluent  11.0.2
+Avalonia  11.0.10
+Avalonia.Desktop  11.0.10
+Avalonia.Diagnostics  11.0.10
+Avalonia.Fonts.Inter  11.0.10
+Avalonia.ReactiveUI  11.0.10
+Avalonia.Themes.Fluent  11.0.10
+Avalonia.Controls.DataGrid  11.0.10
+Dove.Avalonia.Extensions.Media  2.0.2
+VideoLAN.LibVLC.Windows  3.0.20
 iTunesSearch  1.0.44
 Newtonsoft.Json  13.0.3
 ```
@@ -54,6 +57,13 @@ MiniMusicDesktop
 
 |——Icons.axaml    *图标资源*
 
+|——Languages.en-US.resx    *国际化语言包*
+
+|——Languages.zh-Hans.resx    *国际化语言包*
+
 |——ViewLocator.cs    *视图定位器*
 
 |——Program.cs    *主程序*
+
+
+

@@ -4,15 +4,20 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Numerics;
+using System.Reactive;
 using System.Reactive.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using System.Xml.Linq;
 
 namespace MiniMusicDesktop.ViewModels
 {
     public class MarketViewModel : ViewModelBase
     {
-        private string? _searchText;
+        private string? _searchText = "";
         private bool _isBusy;
         public string? SearchText
         {
@@ -35,9 +40,15 @@ namespace MiniMusicDesktop.ViewModels
             set => this.RaiseAndSetIfChanged(ref _selectedItem, value);
         }
 
+
+        public ReactiveCommand<Unit, MusicItemViewModel> PlayMusicCommand { get; }
         public MarketViewModel()
         {
-            
+            PlayMusicCommand = ReactiveCommand.CreateFromTask(async () =>
+            {
+                return SelectedItem;
+            });
+
             this.WhenAnyValue(x => x.SearchText)
                  .Throttle(TimeSpan.FromMilliseconds(400))
                  .ObserveOn(RxApp.MainThreadScheduler)
@@ -49,7 +60,7 @@ namespace MiniMusicDesktop.ViewModels
         private async void InitSearch()
         {
             //SearchResults.Clear();
-            var musics = await Music.SearchReviewAsync();
+            var musics = await Music.SearchReviewAsync(_searchText);
             foreach (var item in musics)
             {
                 var vm = new MusicItemViewModel(item);
@@ -65,7 +76,7 @@ namespace MiniMusicDesktop.ViewModels
 
             if (!string.IsNullOrWhiteSpace(s))
             {
-                var musics = await Music.SearchReviewAsync();
+                var musics = await Music.SearchReviewAsync(_searchText);
 
                 foreach (var item in musics)
                 {
@@ -85,5 +96,8 @@ namespace MiniMusicDesktop.ViewModels
 
             }
         }
+
+        
+        
     }
 }

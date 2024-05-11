@@ -24,6 +24,15 @@ namespace MiniMusicDesktop.ViewModels
             get => _userInfo;
             set => this.RaiseAndSetIfChanged(ref _userInfo, value);
         }
+
+        private MusicItemViewModel _musicItem;
+        public MusicItemViewModel MusicItem
+        {
+            get => _musicItem;
+            set => this.RaiseAndSetIfChanged(ref _musicItem, value);
+        }
+
+
         public CenterContainViewModel(InfoProfile userInfo)
         {
             _userInfo= userInfo;
@@ -44,7 +53,17 @@ namespace MiniMusicDesktop.ViewModels
 
         public void ChangeToMarketViewModel()
         {
-            ContentViewModel = new MarketViewModel();
+            var currentViewModel = new MarketViewModel();
+            ContentViewModel = currentViewModel;
+
+            currentViewModel.PlayMusicCommand
+              .Take(1)
+              .Subscribe(newItem =>
+              {
+                  var rmarkViewModel = new RemarkViewModel();
+                  MusicItem = newItem;
+                  ContentViewModel = rmarkViewModel;
+              });
         }
 
         public void ChangeToUserInformationSettingsViewModel(InfoProfile infoProfile)
