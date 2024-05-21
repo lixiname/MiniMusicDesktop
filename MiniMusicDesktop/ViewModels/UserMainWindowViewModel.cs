@@ -95,6 +95,11 @@ namespace MiniMusicDesktop.ViewModels
         {
             
             var musicItem = CenterContainViewModel.MusicItem;
+            if(musicItem == null)
+            {
+                Console.WriteLine();
+                throw new ArgumentNullException(nameof(musicItem));
+            }
             var _item = new Music
             {
                 Id = musicItem.Id,
@@ -120,7 +125,7 @@ namespace MiniMusicDesktop.ViewModels
         public UserMainWindowViewModel(InfoProfile userInfo) 
         {
             
-            _currentMusicName = "音乐1";
+            _currentMusicName = "";
             _startTime = "00:00";
             _endTime = "04:00";
             _userInfo = userInfo;

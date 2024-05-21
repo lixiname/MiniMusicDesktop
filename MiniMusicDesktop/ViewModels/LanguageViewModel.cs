@@ -41,9 +41,14 @@ namespace MiniMusicDesktop.ViewModels
             if(SelectedIndex== CultureEnum.zh_Hans)
             {
                 culture = CultureConstant.zh_Hans;
+                Assets.Resources.Culture = new CultureInfo("zh-cn");
+                
+                Console.WriteLine("change china");
             }
             else if (SelectedIndex == CultureEnum.zh_HK)
             {
+                Assets.Resources.Culture = new CultureInfo("zh-cn");
+                Console.WriteLine("change china");
                 culture = CultureConstant.zh_HK;
             }
             else if (SelectedIndex == CultureEnum.en_US)
@@ -58,6 +63,7 @@ namespace MiniMusicDesktop.ViewModels
             {
                 culture = CultureConstant.ru_RU;
             }
+            var ls = Assets.Resources.Culture;
             CultureInfo newCulture = new CultureInfo(culture);
             Thread.CurrentThread.CurrentCulture = newCulture;
             Thread.CurrentThread.CurrentUICulture = newCulture;
@@ -80,6 +86,7 @@ namespace MiniMusicDesktop.ViewModels
 
             try
             {
+                
                 CultureInfo newCulture = new CultureInfo(cultures[cultureNdx]);
                 Thread.CurrentThread.CurrentCulture = newCulture;
                 Thread.CurrentThread.CurrentUICulture = newCulture;
@@ -91,8 +98,9 @@ namespace MiniMusicDesktop.ViewModels
                                                 rm.GetString("LanguagesSettings"));
                 LanguagesSettings = String.Format("{0}", rm.GetString("LanguagesSettings"));
 
-               var s= MiniMusicDesktop.Properties.Resources.String1;
-              
+               
+                
+
 
                 Console.WriteLine(greeting);
             }

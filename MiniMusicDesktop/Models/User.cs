@@ -2,9 +2,11 @@
 using MiniMusicDesktop.Models.Common;
 using MiniMusicDesktop.Models.Common.Const;
 using MiniMusicDesktop.Models.Common.Enum;
+using MiniMusicDesktop.Models.DTO;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -37,13 +39,13 @@ namespace MiniMusicDesktop.Models
         [JsonProperty("state")]
         public UserStateEnum State { get; set; }
 
-        public static async Task<User> LoginAsync(string userId, string password)
+        public static async Task<User> LoginAsync(string userId, string password, string captchaId, string captchaCode)
         {
             using (HttpClient s_httpClient = new())
             {
-                s_httpClient.BaseAddress = new Uri("https://localhost:7151");
+                s_httpClient.BaseAddress = new Uri(ConfigConstant.BaseUrl);
 
-                var data = new { UserId = userId, Password = password };
+                var data = new { UserId = userId, Password = password , CaptchaId=captchaId, CaptchaCode=captchaCode };
                 string json = JsonConvert.SerializeObject(data);
                 HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
                 var resData = await s_httpClient.PostAsync("UserLogin", content);
@@ -57,7 +59,10 @@ namespace MiniMusicDesktop.Models
                 }
                 catch (HttpRequestException e)
                 {
-                    Console.WriteLine("user login error");
+                    //Console.ForegroundColor = ConsoleColor.Green; 
+                    //Console.WriteLine("这是一条绿色的调试信息");
+                    Debug.WriteLine("ERROR-ERROR-ERROR: --------------------------- user login error");
+
                     return new User 
                     { Id = -1, UserId = userId, Password = password, InfoTypes = InfoTypeEnum.NullUser, LoginSuccess = LoginStateEnum.Remove };
                 }
@@ -151,7 +156,7 @@ namespace MiniMusicDesktop.Models
         {
             using (HttpClient s_httpClient = new())
             {
-                s_httpClient.BaseAddress = new Uri("https://localhost:7151");
+                s_httpClient.BaseAddress = new Uri(ConfigConstant.BaseUrl);
                 
                 
                 var resData = await s_httpClient.GetAsync("UserList");
@@ -168,6 +173,18 @@ namespace MiniMusicDesktop.Models
                     Console.WriteLine("user List error");
                     return new List<User>();
                 }
+            }
+        }
+        public static async Task<CaptchaInfo> CaptchaAsync()
+        {
+            using (HttpClient s_httpClient = new())
+            {
+                s_httpClient.BaseAddress = new Uri(ConfigConstant.BaseUrl);
+                var resData = await s_httpClient.GetAsync("Captcha");
+                string stringResponse = await resData.Content.ReadAsStringAsync();
+                CaptchaInfo searchResults = JsonConvert.DeserializeObject<CaptchaInfo>(stringResponse);
+                
+                return searchResults;
             }
         }
     }

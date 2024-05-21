@@ -10,6 +10,14 @@
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
 
+  
+  <ItemGroup>
+    <EmbeddedResource Remove="Assets\Resource.en-US.resx" />
+  </ItemGroup>
+
+  
+  
+
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="11.0.10" />
     <PackageReference Include="Avalonia.Controls.DataGrid" Version="11.0.10" />
@@ -24,58 +32,33 @@
     <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.20" />
   </ItemGroup>
 
+  
+
   <ItemGroup>
-    <Compile Update="languages.fr-FR.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>languages.fr-FR.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Properties\Resources.Designer.cs">
+    <Folder Include="LocalCache\" />
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <!--<ItemGroup>
+    <AvaloniaResource Update="Assets\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Update="languages.ru-RU.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>languages.ru-RU.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Views\CollectedMusicItemView.axaml.cs">
-      <DependentUpon>CollectedMusicItemView.axaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\UserMainWindowView.axaml.cs">
-      <DependentUpon>UserMainWindowView.axaml</DependentUpon>
-    </Compile>
-    <Compile Update="languages.zh-cn.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>languages.zh-cn.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
+    </AvaloniaResource>
+  </ItemGroup>-->
 
-  <ItemGroup>
-    <Folder Include="Models\DTO\" />
-    <Folder Include="LocalCache\" />
-  </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Update="Assets\Resources.resx">
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Update="Languages.en-US.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="languages.fr-FR.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>languages.fr-FR.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Languages.zh-Hans.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="languages.ru-RU.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>languages.ru-RU.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Update="Assets\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
 </Project>

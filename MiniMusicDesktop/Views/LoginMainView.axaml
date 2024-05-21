@@ -2,13 +2,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:assets="clr-namespace:MiniMusicDesktop.Assets"
              xmlns:vm="using:MiniMusicDesktop.ViewModels"
 			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="MiniMusicDesktop.Views.LoginMainView"
 			 x:DataType="vm:LoginMainViewModel">
 	
 	<Panel>
-		<DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="300" Height="300">
+		<DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="300" Height="400">
 
 			
 			<UniformGrid DockPanel.Dock="Bottom" Rows="1" Columns="2">
@@ -48,10 +49,61 @@
 				<RadioButton GroupName="First"
 						  Content="管理员" IsChecked="{Binding IsOptionManagmentChecked}"/>
 			</UniformGrid>
+
+			<StackPanel 
+				Width="400"
+				Spacing="10"
+				DockPanel.Dock="Bottom" Orientation="Horizontal" FlowDirection="RightToLeft">
+				<Button 
+						Command="{Binding CaptchaCommand}"
+						HorizontalAlignment="Center"
+						Content="{x:Static assets:Resources.ChangeCaptchaText}">
+				</Button>
+			</StackPanel>
+			
+			<Grid ColumnDefinitions="* * * " RowDefinitions="*"
+				  Height="50" Width="400"
+				  DockPanel.Dock="Bottom">
+				<Border
+					Grid.Column="1" Grid.Row="2"
+					Grid.ColumnSpan="1"
+					BorderBrush="Black"
+					BorderThickness="1"
+					CornerRadius="8"
+					Padding="10" Margin="10">
+					<TextBox
+						VerticalAlignment="Center"
+						Watermark="{x:Static assets:Resources.CaptchaWatermarkText}"  
+						Text="{Binding CaptchaCode}">
+					</TextBox>
+				</Border>
+
+				<Border
+					Grid.Column="2" Grid.Row="2"
+					BorderBrush="Black"
+					CornerRadius="8"
+					Padding="10" Margin="10">
+					<Image
+							DockPanel.Dock="Top"
+							Width="70"
+							Height="70" Stretch="Uniform" Source="{Binding Cover}"/>
+					
+
+					<!--<Button Width="70" Height="70" Command="{Binding CaptchaCommand}" >
+						<Button.Background>
+							<ImageBrush Stretch="Uniform" Source="{Binding Cover}"/>
+						</Button.Background>
+					</Button>-->
+
+
+				</Border>
+
+			</Grid>
 			
 			
 			
-			<Grid ColumnDefinitions="* * *" RowDefinitions="* *" 
+			
+			<Grid ColumnDefinitions="* * * " RowDefinitions="* *" 
 				  Height="100" Width="400"
 				  DockPanel.Dock="Bottom">
 				<Border 
@@ -62,7 +114,7 @@
         CornerRadius="8"
         Padding="2" Margin="10">
 					<Label HorizontalAlignment="Center"
-					   VerticalAlignment="Center" >账号</Label>
+					   VerticalAlignment="Center" Content="{x:Static assets:Resources.AccountText}"/>
 				</Border>
 				<Border
 					Grid.Column="1" Grid.Row="0"
@@ -72,8 +124,8 @@
         CornerRadius="8"
         Padding="2" Margin="10">
 					<TextBox 
-						 Watermark="输入账号名"  Text="{Binding UId}">
-					</TextBox>
+						 Watermark="{x:Static assets:Resources.AccountWatermarkText}"  
+					Text="{Binding UId}"/>
 				</Border>
 				
 				<Border
@@ -85,7 +137,8 @@
         Padding="2" Margin="10">
 					<Label 
 					   HorizontalAlignment="Center"
-					   VerticalAlignment="Center">密码</Label>
+					   VerticalAlignment="Center"
+					   Content="{x:Static assets:Resources.PasswordText}"/>
 				</Border>
 				<Border
 					Grid.Column="1" Grid.Row="1"
@@ -94,12 +147,29 @@
         BorderThickness="1"
         CornerRadius="8"
         Padding="2" Margin="10">
-					<TextBox  Watermark="输入密码"  
-							  Text="{Binding Password}"
-							  PasswordChar="*"></TextBox>
+					<TextBox  Name="PasswordInput"
+						Watermark="{x:Static assets:Resources.PasswordWatermarkText}"  
+							  Text="{Binding Password}"/>
 				</Border>
+				<Border
+					Grid.Column="3" Grid.Row="1"
+					Grid.ColumnSpan="1"
+        BorderBrush="Black"
+        BorderThickness="1"
+        CornerRadius="8"
+        Padding="10 0 0 0" Margin="70 10 15 10">
+					<Button 
+						HorizontalAlignment="Right"
+						Click="Button_Click_ChangePasswordChar">
+						<PathIcon Data="{StaticResource person_regular}" ></PathIcon>
+						
+					</Button>
+				</Border>
+
 				
+
 			</Grid>
+			
 			<Panel DockPanel.Dock="Bottom">
 				<Border Background="Gainsboro"
         BorderBrush="Black"

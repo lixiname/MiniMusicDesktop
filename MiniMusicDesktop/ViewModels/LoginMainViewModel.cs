@@ -1,8 +1,10 @@
-﻿using MiniMusicDesktop.Models;
+﻿using Avalonia.Media.Imaging;
+using MiniMusicDesktop.Models;
 using Newtonsoft.Json;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Reactive;
@@ -16,6 +18,9 @@ namespace MiniMusicDesktop.ViewModels
 {
     public class LoginMainViewModel: ViewModelBase
     {
+
+
+
         private string _password=string.Empty;
 
         public string Password
@@ -31,6 +36,24 @@ namespace MiniMusicDesktop.ViewModels
             get => _uId;
             set => this.RaiseAndSetIfChanged(ref _uId, value);
         }
+
+        private string _captchaCode = string.Empty;
+
+        public string CaptchaCode
+        {
+            get => _captchaCode;
+            set => this.RaiseAndSetIfChanged(ref _captchaCode, value);
+        }
+        private string _captchaId = string.Empty;
+
+        public string CaptchaId
+        {
+            get => _captchaId;
+            set => this.RaiseAndSetIfChanged(ref _captchaId, value);
+        }
+
+
+
 
         private bool _isOptionManagmentChecked;
         public bool IsOptionManagmentChecked
@@ -56,9 +79,25 @@ namespace MiniMusicDesktop.ViewModels
             UId = newItem.UserId;
         }
 
+        private Bitmap? _cover;
+
+        public Bitmap? Cover
+        {
+            get => _cover;
+            private set => this.RaiseAndSetIfChanged(ref _cover, value);
+        }
+
+        public ICommand CaptchaCommand { get; }
 
         public LoginMainViewModel()
         {
+            CaptchaCommand = ReactiveCommand.CreateFromTask(async () =>
+            {
+                var captchaInfo = await User.CaptchaAsync();
+                Cover = await Task.Run(() => Bitmap.DecodeToWidth(captchaInfo.ImageStream, 400));
+                CaptchaId = captchaInfo.Id;
+            });
+            
 
             //var isUIdInputValid = this.WhenAnyValue(
             //x=>string.IsNullOrEmpty(x.Password));
@@ -73,7 +112,7 @@ namespace MiniMusicDesktop.ViewModels
                 {
                     
                     //Int32.Parse(UId)
-                    var resData =await User.LoginAsync(userId: UId, password:Password);
+                    var resData =await User.LoginAsync(userId: UId, password:Password, captchaId: CaptchaId, captchaCode: CaptchaCode);
                     var infoProfile=new InfoProfile
                     {
                         Id=resData.Id,
