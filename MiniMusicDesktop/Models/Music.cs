@@ -191,7 +191,7 @@ namespace MiniMusicDesktop.Models
         }
 
 
-        public static async Task<List<MusicAgreedTopSortDTO>> SearchBarChartAsync(YearEnum year,MonthEnum month)
+        public static async Task<List<MusicCollectedTopSortDTO>> SearchBarChartAsync(YearEnum year,MonthEnum month)
         {
             using (HttpClient s_httpClient = new())
             {
@@ -208,13 +208,13 @@ namespace MiniMusicDesktop.Models
                     data.EnsureSuccessStatusCode();
                     
                     string stringResponse = await data.Content.ReadAsStringAsync();
-                    var searchResults = JsonConvert.DeserializeObject<List<MusicAgreedTopSortDTO>>(stringResponse);
+                    var searchResults = JsonConvert.DeserializeObject<List<MusicCollectedTopSortDTO>>(stringResponse);
                     return searchResults;
                 }
                 catch (HttpRequestException e)
                 {
                     Console.WriteLine("SearchBarChart review music List error");
-                    return new List<MusicAgreedTopSortDTO>();
+                    return new List<MusicCollectedTopSortDTO>();
                 }
             }
 
@@ -243,8 +243,37 @@ namespace MiniMusicDesktop.Models
                 }
                 catch (HttpRequestException e)
                 {
-                    Console.WriteLine("SearchBarChart review music List error");
+                    Console.WriteLine("SearchLineChart review music List error");
                     return new List<MusicAgreedTopSortDTO>();
+                }
+            }
+
+        }
+
+        public static async Task<List<MusicDownloadPieDTO>> SearchPieChartAsync(YearEnum year, MonthEnum month)
+        {
+            using (HttpClient s_httpClient = new())
+            {
+                s_httpClient.BaseAddress = new Uri(ConfigConstant.BaseUrl);
+
+                var yearQ = Convert.ToInt32(year) + 2023;
+                var monthQ = Convert.ToInt32(month) + 1;
+                string endpoint = "SearchPieChart";
+                string queryString = $"?year={yearQ}&&month={monthQ}";
+                string requestUrl = endpoint + queryString;
+                var data = await s_httpClient.GetAsync(requestUrl);
+                try
+                {
+                    data.EnsureSuccessStatusCode();
+
+                    string stringResponse = await data.Content.ReadAsStringAsync();
+                    var searchResults = JsonConvert.DeserializeObject<List<MusicDownloadPieDTO>>(stringResponse);
+                    return searchResults;
+                }
+                catch (HttpRequestException e)
+                {
+                    Console.WriteLine("SearchPieChart review music List error");
+                    return new List<MusicDownloadPieDTO>();
                 }
             }
 

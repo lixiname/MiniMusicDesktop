@@ -32,9 +32,9 @@ public class PieChartViewModel : ViewModelBase
 
         }
     }
-    public async Task<List<MusicAgreedTopSortDTO>> ChangeBarContentAsync()
+    public async Task<List<MusicDownloadPieDTO>> ChangeBarContentAsync()
     {
-        var resList = await Music.SearchLineChartAsync(ComboBoxYearSelectedIndex, ComboBoxMonthSelectedIndex, 1);
+        var resList = await Music.SearchPieChartAsync(ComboBoxYearSelectedIndex, ComboBoxMonthSelectedIndex);
         return resList;
     }
 }

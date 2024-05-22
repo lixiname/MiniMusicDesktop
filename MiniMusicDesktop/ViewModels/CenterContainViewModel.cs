@@ -41,7 +41,8 @@ namespace MiniMusicDesktop.ViewModels
             //_contentViewModel = new RemarkViewModel();
             //test
             //_contentViewModel = new BarChartViewModel();
-            _contentViewModel = new LineChartViewModel();
+            //_contentViewModel = new LineChartViewModel();
+            _contentViewModel = new PieChartViewModel();
 
 
 

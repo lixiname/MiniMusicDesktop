@@ -40,8 +40,9 @@ namespace MiniMusicDesktop.ViewModels
         }
         public void ChangeToRemarkViewModel()
         {
-            ContentViewModel = new RemarkViewModel();
+            ContentViewModel = new CustomerViewModel();
         }
+
         public void ChangeToTroubleTipsViewModel()
         {
             ContentViewModel = new TroubleTipsViewModel();

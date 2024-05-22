@@ -35,7 +35,7 @@ namespace MiniMusicDesktop.ViewModels
 
             }
         }
-        public async Task<List<MusicAgreedTopSortDTO>> ChangeBarContentAsync()
+        public async Task<List<MusicCollectedTopSortDTO>> ChangeBarContentAsync()
         {
             var resList = await Music.SearchBarChartAsync(ComboBoxYearSelectedIndex, ComboBoxMonthSelectedIndex);
             return resList;
