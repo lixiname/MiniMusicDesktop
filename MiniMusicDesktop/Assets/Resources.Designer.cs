@@ -232,6 +232,24 @@ namespace MiniMusicDesktop.Assets {
         }
         
         /// <summary>
+        ///   查找类似 管理员 的本地化字符串。
+        /// </summary>
+        public static string MRoleText {
+            get {
+                return ResourceManager.GetString("MRoleText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 歌曲详情 的本地化字符串。
+        /// </summary>
+        public static string MusicDetailText {
+            get {
+                return ResourceManager.GetString("MusicDetailText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 音乐清单 的本地化字符串。
         /// </summary>
         public static string MusicMarketText {
@@ -295,6 +313,24 @@ namespace MiniMusicDesktop.Assets {
         }
         
         /// <summary>
+        ///   查找类似 退出 的本地化字符串。
+        /// </summary>
+        public static string QuitText {
+            get {
+                return ResourceManager.GetString("QuitText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 如果没有账号？ 的本地化字符串。
+        /// </summary>
+        public static string RegisterAccountWatermarkText {
+            get {
+                return ResourceManager.GetString("RegisterAccountWatermarkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 确认密码 的本地化字符串。
         /// </summary>
         public static string RepeatNewPwdText {
@@ -336,6 +372,24 @@ namespace MiniMusicDesktop.Assets {
         public static string SubmitText {
             get {
                 return ResourceManager.GetString("SubmitText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 音乐桌面应用系统 的本地化字符串。
+        /// </summary>
+        public static string SystemTitleText {
+            get {
+                return ResourceManager.GetString("SystemTitleText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 个人用户 的本地化字符串。
+        /// </summary>
+        public static string UserRoleText {
+            get {
+                return ResourceManager.GetString("UserRoleText", resourceCulture);
             }
         }
         

@@ -3,15 +3,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:vm="using:MiniMusicDesktop.ViewModels"
+			 xmlns:assets="clr-namespace:MiniMusicDesktop.Assets"
 			 xmlns:views="clr-namespace:MiniMusicDesktop.Views"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="MiniMusicDesktop.Views.RemarkView"
 			 x:DataType="vm:RemarkViewModel">
 	<DockPanel>
 		<Label DockPanel.Dock="Top"
-			   HorizontalContentAlignment="Center">
-			歌曲详情
-		</Label>
+			   HorizontalContentAlignment="Center"
+			   Content="{x:Static assets:Resources.MusicDetailText}"/>
+			
+		
 		<StackPanel Spacing="5" Width="200" DockPanel.Dock="Top">
 			<Border CornerRadius="10" ClipToBounds="True">
 				<Panel Background="Gold">

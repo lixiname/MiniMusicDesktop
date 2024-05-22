@@ -18,13 +18,15 @@
 						HorizontalContentAlignment="Center"
 						Command="{Binding LoginCommand}"
 						Width="80"
-						CornerRadius="10">登录</Button>
+						CornerRadius="10"
+						Content="{x:Static assets:Resources.SubmitText}"/>
 				<Button Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" 
 						Command="{Binding QuitCommand}"
 					    HorizontalContentAlignment="Center"
 						Width="80"
 						Background="Black"
-						CornerRadius="10">退出</Button>
+						CornerRadius="10"
+						Content="{x:Static assets:Resources.QuitText}"/>
 			</UniformGrid>
 			<DockPanel DockPanel.Dock="Bottom"
 					   Height="50">
@@ -40,14 +42,15 @@
 				</Button>
 				<TextBlock HorizontalAlignment="Right" VerticalAlignment="Center"
 						   Foreground="Red"
-						   DockPanel.Dock="Right">如果没有账号？</TextBlock>
-				
+						   DockPanel.Dock="Right"
+						   Text="{x:Static assets:Resources.RegisterAccountWatermarkText}"/>
+
 			</DockPanel>
 			<UniformGrid DockPanel.Dock="Bottom" Rows="1" Columns="2">
 				<RadioButton  GroupName="First"
-              Content="个人用户" IsChecked="{Binding IsOptionUserChecked}"/>
+              Content="{x:Static assets:Resources.UserRoleText}" IsChecked="{Binding IsOptionUserChecked}"/>
 				<RadioButton GroupName="First"
-						  Content="管理员" IsChecked="{Binding IsOptionManagmentChecked}"/>
+						  Content="{x:Static assets:Resources.MRoleText}" IsChecked="{Binding IsOptionManagmentChecked}"/>
 			</UniformGrid>
 
 			<StackPanel 
@@ -162,11 +165,8 @@
 						HorizontalAlignment="Right"
 						Click="Button_Click_ChangePasswordChar">
 						<PathIcon Data="{StaticResource person_regular}" ></PathIcon>
-						
 					</Button>
 				</Border>
-
-				
 
 			</Grid>
 			
@@ -177,7 +177,8 @@
         CornerRadius="8"
         Padding="10" Margin="10" Height="50">
 					<TextBlock HorizontalAlignment="Center"
-							   VerticalAlignment="Center" Foreground="Black">音乐桌面应用系统</TextBlock>
+							   VerticalAlignment="Center" Foreground="Black"
+							   Text="{x:Static assets:Resources.SystemTitleText}"/>
 				</Border>
 			</Panel>
 		</DockPanel>
