@@ -14,6 +14,7 @@ using iTunesSearch.Library.Models;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using MiniMusicDesktop.Models.Common.Enum;
 using MiniMusicDesktop.Models.Common.Const;
+using MiniMusicDesktop.Models.DTO;
 
 namespace MiniMusicDesktop.Models
 {
@@ -185,6 +186,66 @@ namespace MiniMusicDesktop.Models
                 var data = await s_httpClient.GetByteArrayAsync($"Media?id={Id}");
                 return new MemoryStream(data);
 
+            }
+
+        }
+
+
+        public static async Task<List<MusicAgreedTopSortDTO>> SearchBarChartAsync(YearEnum year,MonthEnum month)
+        {
+            using (HttpClient s_httpClient = new())
+            {
+                s_httpClient.BaseAddress = new Uri(ConfigConstant.BaseUrl);
+
+                var yearQ=Convert.ToInt32(year)+2023;
+                var monthQ = Convert.ToInt32(month)+1;
+                string endpoint = "SearchBarChart";
+                string queryString = $"?year={yearQ}&&month={monthQ}";
+                string requestUrl = endpoint + queryString;
+                var data = await s_httpClient.GetAsync(requestUrl);
+                try
+                {
+                    data.EnsureSuccessStatusCode();
+                    
+                    string stringResponse = await data.Content.ReadAsStringAsync();
+                    var searchResults = JsonConvert.DeserializeObject<List<MusicAgreedTopSortDTO>>(stringResponse);
+                    return searchResults;
+                }
+                catch (HttpRequestException e)
+                {
+                    Console.WriteLine("SearchBarChart review music List error");
+                    return new List<MusicAgreedTopSortDTO>();
+                }
+            }
+
+        }
+
+
+        public static async Task<List<MusicAgreedTopSortDTO>> SearchLineChartAsync(YearEnum year, MonthEnum month,long musicId)
+        {
+            using (HttpClient s_httpClient = new())
+            {
+                s_httpClient.BaseAddress = new Uri(ConfigConstant.BaseUrl);
+
+                var yearQ = Convert.ToInt32(year) + 2023;
+                var monthQ = Convert.ToInt32(month) + 1;
+                string endpoint = "SearchLineChart";
+                string queryString = $"?year={yearQ}&&month={monthQ}&&musicId={musicId}";
+                string requestUrl = endpoint + queryString;
+                var data = await s_httpClient.GetAsync(requestUrl);
+                try
+                {
+                    data.EnsureSuccessStatusCode();
+
+                    string stringResponse = await data.Content.ReadAsStringAsync();
+                    var searchResults = JsonConvert.DeserializeObject<List<MusicAgreedTopSortDTO>>(stringResponse);
+                    return searchResults;
+                }
+                catch (HttpRequestException e)
+                {
+                    Console.WriteLine("SearchBarChart review music List error");
+                    return new List<MusicAgreedTopSortDTO>();
+                }
             }
 
         }

@@ -37,7 +37,11 @@ namespace MiniMusicDesktop.ViewModels
         {
             _userInfo= userInfo;
             //_contentViewModel = new MarketViewModel();
-            _contentViewModel = new RemarkViewModel();
+
+            //_contentViewModel = new RemarkViewModel();
+            //test
+            //_contentViewModel = new BarChartViewModel();
+            _contentViewModel = new LineChartViewModel();
 
 
 
@@ -74,7 +78,7 @@ namespace MiniMusicDesktop.ViewModels
 
         public void ChangeToSettingsViewModel()
         {
-            var settingsViewModel = new SettingsViewModel();
+            var settingsViewModel = new SettingsViewModel(UserInfo);
             Observable.Merge(
                               settingsViewModel.ChangeProfileCommand.Select(_ => (User?)null),
                               settingsViewModel.CloseSettingsCommand.Select(_ => (User?)null))

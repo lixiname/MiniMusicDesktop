@@ -9,15 +9,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace MiniMusicDesktop.ViewModels
 {
     public class MusicItemViewModel : ViewModelBase
     {
         private readonly Music _item;
+
+
+        public ICommand RemarkCommand { get; }
+        public ICommand CollectCommand { get; }
+        public ICommand DownloadCommand { get; }
+        public ICommand AgreeCommand { get; }
+
         public MusicItemViewModel(Music item)
         {
             _item = item;
+            //CollectCommand = ReactiveCommand.Create();
+
+
+
         }
 
         public long Id => _item.Id;
@@ -51,7 +63,8 @@ namespace MiniMusicDesktop.ViewModels
             }
         } 
 
-
+        
+         
         private Bitmap? _cover;
 
         public Bitmap? Cover

@@ -187,6 +187,53 @@ namespace MiniMusicDesktop.Models
                 return searchResults;
             }
         }
+        public static async Task<string> EmailCaptchaAsync(string email)
+        {
+            using (HttpClient s_httpClient = new())
+            {
+                s_httpClient.BaseAddress = new Uri(ConfigConstant.BaseUrl);
+                var resData = await s_httpClient.GetAsync($"emailCode?email={email}");
+
+                try
+                {
+                    resData.EnsureSuccessStatusCode();
+                    string stringResponse = await resData.Content.ReadAsStringAsync();
+                    EmailInfo searchResults = JsonConvert.DeserializeObject<EmailInfo>(stringResponse);
+                    return searchResults.EmailRandomId;
+                }
+                catch (HttpRequestException e)
+                {
+
+                    Console.WriteLine("get code error");
+                    return "get code error";
+                }
+                
+            }
+        }
+        public static async Task<User> ResetPwdAsync(string userId,string emailRandom,string emailCode,string pwd)
+        {
+            using (HttpClient s_httpClient = new())
+            {
+                s_httpClient.BaseAddress = new Uri(ConfigConstant.BaseUrl);
+
+                var data = new
+                {
+                    UserId = userId,
+                    EmailRandomId= emailRandom,  
+                    EmailCode= emailCode, 
+                    ChangePassword= pwd
+                };
+                string json = JsonConvert.SerializeObject(data);
+                HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                var resData = await s_httpClient.PostAsync("resetPwd", content);
+                string stringResponse = await resData.Content.ReadAsStringAsync();
+                User searchResults = JsonConvert.DeserializeObject<User>(stringResponse);
+
+                return searchResults;
+            }
+        }
+
+        
     }
     
 }

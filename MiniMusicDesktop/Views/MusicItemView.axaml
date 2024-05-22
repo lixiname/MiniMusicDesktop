@@ -43,7 +43,7 @@
 								VerticalAlignment="Bottom"
 								HorizontalAlignment="Left"
 								Margin="3">
-								<Button>
+								<Button Command="{Binding RemarkCommand}">
 									<!--评论-->
 									<PathIcon Data="{StaticResource  chat_regular}"/>
 								</Button>
@@ -56,7 +56,7 @@
 								CornerRadius="35" ClipToBounds="True"
 								DockPanel.Dock="Right"
 								Margin="3">
-							<Button>
+							<Button Command="{Binding CollectCommand}">
 								<!--收藏-->
 								<PathIcon Data="{StaticResource  star_edit_regular}"/>
 							</Button>
@@ -67,7 +67,7 @@
 								VerticalAlignment="Bottom"
 								HorizontalAlignment="Left"
 								Margin="3">
-								<Button >
+								<Button Command="{Binding DownloadCommand}">
 									<!--下载-->
 									<PathIcon Data="{StaticResource  text_sort_ascending_regular}"/>
 								</Button>
@@ -84,7 +84,7 @@
 								VerticalAlignment="Bottom"
 								HorizontalAlignment="Left"
 								Margin="3">
-								<Button>
+								<Button Command="{Binding AgreeCommand}">
 									<!--点赞-->
 									<PathIcon Data="{StaticResource  heart_regular}"/>
 								</Button>

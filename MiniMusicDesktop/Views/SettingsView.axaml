@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:vm="using:MiniMusicDesktop.ViewModels" 
 			 xmlns:views="clr-namespace:MiniMusicDesktop.Views"
+			 xmlns:assets="clr-namespace:MiniMusicDesktop.Assets"
 			 x:DataType="vm:SettingsViewModel"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="MiniMusicDesktop.Views.SettingsView"
@@ -34,7 +35,7 @@
 									   VerticalAlignment="Center"
 									   HorizontalContentAlignment="Center"
 									   Padding="10" 
-									   Command="{Binding PasswordRemarkCommand}">
+									   Command="{Binding FindPassowrdCommand}">
 									密码找回
 								</Button>
 								<Button HorizontalAlignment="Stretch"

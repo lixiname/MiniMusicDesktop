@@ -1,0 +1,50 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:assets="clr-namespace:MiniMusicDesktop.Assets"
+			 xmlns:ScottPlot="clr-namespace:ScottPlot.Avalonia;assembly=ScottPlot.Avalonia"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MiniMusicDesktop.Views.BarChartView">
+	<DockPanel
+		Margin="10">
+		
+		<Border Margin="10" Padding="10"
+				Height="400"
+				BorderBrush="Gray"
+				BorderThickness="1" DockPanel.Dock="Top">
+			<ScottPlot:AvaPlot Name="AvaPlot1" />
+		</Border>
+		<StackPanel DockPanel.Dock="Bottom" Spacing="10" Orientation="Horizontal">
+			<Label Content="{x:Static assets:Resources.BarSelectTipsText}"/>
+			<ComboBox Width="100" 
+						  SelectedIndex="{Binding ComboBoxYearSelectedIndex}">
+				<ComboBoxItem>
+					2023
+				</ComboBoxItem>
+				<ComboBoxItem>
+					2024
+				</ComboBoxItem>
+			</ComboBox>
+			<ComboBox Width="100" 
+						  SelectedIndex="{Binding ComboBoxMonthSelectedIndex}">
+				<ComboBoxItem Content="{x:Static assets:Resources.JanuaryText}"/>
+				<ComboBoxItem Content="{x:Static assets:Resources.FebruaryText}"/>
+				<ComboBoxItem Content="{x:Static assets:Resources.MarchText}"/>
+				<ComboBoxItem Content="{x:Static assets:Resources.AprilText}"/>
+				<ComboBoxItem Content="{x:Static assets:Resources.MayText}"/>
+				<ComboBoxItem Content="{x:Static assets:Resources.JuneText}"/>
+				<ComboBoxItem Content="{x:Static assets:Resources.JulyText}"/>
+				<ComboBoxItem Content="{x:Static assets:Resources.AugustText}"/>
+				<ComboBoxItem Content="{x:Static assets:Resources.SeptemberText}"/>
+				<ComboBoxItem Content="{x:Static assets:Resources.OctoberText}"/>
+				<ComboBoxItem Content="{x:Static assets:Resources.NovemberText}"/>
+				<ComboBoxItem Content="{x:Static assets:Resources.DecemberText}"/>
+			</ComboBox>
+			<Button Click="Button_click_ChangeChart" Content="{x:Static assets:Resources.SubmitText}"/>
+			
+		</StackPanel>
+
+	</DockPanel>
+
+</UserControl>

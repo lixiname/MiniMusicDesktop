@@ -1,0 +1,151 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:assets="clr-namespace:MiniMusicDesktop.Assets"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 
+             x:Class="MiniMusicDesktop.Views.FindPwdView">
+	<Panel>
+		<DockPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="300" Height="400">
+			<UniformGrid DockPanel.Dock="Bottom" >
+				<Text>11111111111</Text>
+			</UniformGrid>
+			<UniformGrid DockPanel.Dock="Bottom" Rows="1" Columns="1">
+				<Button Grid.Column="0" Grid.Row="0"
+						HorizontalAlignment="Center"
+						HorizontalContentAlignment="Center"
+						Command="{Binding ResetPwdCommand}"
+						Width="80"
+						CornerRadius="10" Content="{x:Static assets:Resources.ResetPwdText}"/>
+			</UniformGrid>
+			
+
+			<Grid ColumnDefinitions="* * * " RowDefinitions="* *"
+				  Height="100" Width="400"
+				  DockPanel.Dock="Bottom">
+				<Border
+					Grid.Column="0" Grid.Row="0"
+					BorderBrush="Black"
+					BorderThickness="1"
+					CornerRadius="8"
+					Padding="2" Margin="10">
+					<Label HorizontalAlignment="Center"
+					   VerticalAlignment="Center" Content="{x:Static assets:Resources.NewPwdText}"/>
+				</Border>
+				<Border
+					Grid.Column="1" Grid.Row="0"
+					Grid.ColumnSpan="2"
+					BorderBrush="Black"
+					BorderThickness="1"
+					CornerRadius="8"
+					Padding="2" Margin="10">
+					<TextBox
+						Name="PasswordInput"
+						PasswordChar="*"
+						Watermark="{x:Static assets:Resources.NewPwdWatermarkText}"
+					Text="{Binding Password}"/>
+					 
+				</Border>
+				<Border
+					Grid.Column="3" Grid.Row="0"
+					Grid.ColumnSpan="1"
+					BorderBrush="Black"
+					BorderThickness="1"
+					CornerRadius="8"
+					Padding="10 0 0 0" Margin="70 10 15 10">
+					<Button
+						HorizontalAlignment="Right"
+						Click="Button_Click_ChangePasswordChar">
+						<PathIcon Data="{StaticResource person_regular}" ></PathIcon>
+					</Button>
+				</Border>
+				<Border
+					Grid.Column="0" Grid.Row="1"
+					BorderBrush="Black"
+					BorderThickness="1"
+					CornerRadius="8"
+					Padding="2" Margin="10">
+					<Label
+					   HorizontalAlignment="Center"
+					   VerticalAlignment="Center"
+					   Content="{x:Static assets:Resources.RepeatNewPwdText}"/>
+				</Border>
+				<Border
+					Grid.Column="1" Grid.Row="1"
+					Grid.ColumnSpan="2"
+					BorderBrush="Black"
+					BorderThickness="1"
+					CornerRadius="8"
+					Padding="2" Margin="10">
+					<TextBox  Name="RepeatPasswordInput"
+							  PasswordChar="*"
+						Watermark="{x:Static assets:Resources.RepeatNewPwdWatermarkText}"
+							  Text="{Binding PasswordRepeat}"/>
+					
+				</Border>
+				<Border
+					Grid.Column="3" Grid.Row="1"
+					Grid.ColumnSpan="1"
+					BorderBrush="Black"
+					BorderThickness="1"
+					CornerRadius="8"
+					Padding="10 0 0 0" Margin="70 10 15 10">
+					<Button
+						HorizontalAlignment="Right"
+						Click="Button_Click_ChangeRepeatPasswordChar">
+						<PathIcon Data="{StaticResource person_regular}" ></PathIcon>
+					</Button>
+				</Border>
+
+			</Grid>
+
+			<Grid ColumnDefinitions="* * * " RowDefinitions="*"
+				  Height="50" Width="400"
+				  DockPanel.Dock="Bottom">
+				<Border
+					Grid.Column="1" Grid.Row="2"
+					Grid.ColumnSpan="1"
+					BorderBrush="Black"
+					BorderThickness="1"
+					CornerRadius="8"
+					Padding="10" Margin="10">
+					<TextBox
+						VerticalAlignment="Center"
+						Watermark="{x:Static assets:Resources.CaptchaWatermarkText}"
+						Text="{Binding CaptchaCode}">
+					</TextBox>
+				</Border>
+
+				<Button Grid.Column="2" Grid.Row="2"
+						HorizontalAlignment="Center"
+						HorizontalContentAlignment="Center"
+						Command="{Binding CaptchaCommand}"
+						IsEnabled="{Binding GetCaptchaEnabled}"
+						CornerRadius="10" Content="{Binding SecondWaitGetCaptcha}"/>
+
+			</Grid>
+			<DockPanel DockPanel.Dock="Bottom">
+				
+				<TextBlock 
+					DockPanel.Dock="Left"
+					HorizontalAlignment="Center"
+					   VerticalAlignment="Center"
+					   Text="{x:Static assets:Resources.CurrentEmailText}"/>
+				<Label HorizontalAlignment="Center"
+					   VerticalAlignment="Center"
+					   Content="{Binding CurrentEmail}"/>	
+				
+			</DockPanel>
+			<Panel DockPanel.Dock="Bottom">
+				<Border  
+						Padding="2" Margin="2" >
+					<TextBlock HorizontalAlignment="Center"
+							   VerticalAlignment="Center" 
+							   Text="{x:Static assets:Resources.FindPwdTitleText}"/>
+				</Border>
+			</Panel>
+		</DockPanel>
+	</Panel>
+  
+</UserControl>

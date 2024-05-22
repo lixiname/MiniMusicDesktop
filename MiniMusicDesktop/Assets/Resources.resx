@@ -123,6 +123,15 @@
   <data name="AccountWatermarkText" xml:space="preserve">
     <value>请输入账号</value>
   </data>
+  <data name="AprilText" xml:space="preserve">
+    <value>四月</value>
+  </data>
+  <data name="AugustText" xml:space="preserve">
+    <value>八月</value>
+  </data>
+  <data name="BarSelectTipsText" xml:space="preserve">
+    <value>筛选时间段</value>
+  </data>
   <data name="CaptchaText" xml:space="preserve">
     <value>验证码</value>
   </data>
@@ -132,13 +141,76 @@
   <data name="ChangeCaptchaText" xml:space="preserve">
     <value>换一张</value>
   </data>
+  <data name="CurrentEmailText" xml:space="preserve">
+    <value>当前邮箱</value>
+  </data>
+  <data name="DecemberText" xml:space="preserve">
+    <value>十二月</value>
+  </data>
+  <data name="FebruaryText" xml:space="preserve">
+    <value>二月</value>
+  </data>
+  <data name="FindPwdTitleText" xml:space="preserve">
+    <value>找回密码</value>
+  </data>
+  <data name="GetCaptchaText" xml:space="preserve">
+    <value>获取验证码</value>
+  </data>
+  <data name="JanuaryText" xml:space="preserve">
+    <value>一月</value>
+  </data>
+  <data name="JulyText" xml:space="preserve">
+    <value>七月</value>
+  </data>
+  <data name="JuneText" xml:space="preserve">
+    <value>六月</value>
+  </data>
+  <data name="MarchText" xml:space="preserve">
+    <value>三月</value>
+  </data>
+  <data name="MayText" xml:space="preserve">
+    <value>五月</value>
+  </data>
+  <data name="MonthString" xml:space="preserve">
+    <value>月</value>
+  </data>
   <data name="MusicMarketText" xml:space="preserve">
     <value>音乐清单</value>
+  </data>
+  <data name="NewPwdText" xml:space="preserve">
+    <value>新密码</value>
+  </data>
+  <data name="NewPwdWatermarkText" xml:space="preserve">
+    <value>请输入新密码</value>
+  </data>
+  <data name="NovemberText" xml:space="preserve">
+    <value>十一月</value>
+  </data>
+  <data name="OctoberText" xml:space="preserve">
+    <value>十月</value>
   </data>
   <data name="PasswordText" xml:space="preserve">
     <value>密码</value>
   </data>
   <data name="PasswordWatermarkText" xml:space="preserve">
     <value>请输入密码</value>
+  </data>
+  <data name="RepeatNewPwdText" xml:space="preserve">
+    <value>确认密码</value>
+  </data>
+  <data name="RepeatNewPwdWatermarkText" xml:space="preserve">
+    <value>请再次输入密码</value>
+  </data>
+  <data name="ResetPwdText" xml:space="preserve">
+    <value>重置密码</value>
+  </data>
+  <data name="SeptemberText" xml:space="preserve">
+    <value>九月</value>
+  </data>
+  <data name="SubmitText" xml:space="preserve">
+    <value>确认</value>
+  </data>
+  <data name="YearString" xml:space="preserve">
+    <value>年</value>
   </data>
 </root>

@@ -79,6 +79,33 @@ namespace MiniMusicDesktop.Assets {
         }
         
         /// <summary>
+        ///   查找类似 四月 的本地化字符串。
+        /// </summary>
+        public static string AprilText {
+            get {
+                return ResourceManager.GetString("AprilText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 八月 的本地化字符串。
+        /// </summary>
+        public static string AugustText {
+            get {
+                return ResourceManager.GetString("AugustText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 筛选时间段 的本地化字符串。
+        /// </summary>
+        public static string BarSelectTipsText {
+            get {
+                return ResourceManager.GetString("BarSelectTipsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 验证码 的本地化字符串。
         /// </summary>
         public static string CaptchaText {
@@ -106,11 +133,146 @@ namespace MiniMusicDesktop.Assets {
         }
         
         /// <summary>
+        ///   查找类似 当前邮箱 的本地化字符串。
+        /// </summary>
+        public static string CurrentEmailText {
+            get {
+                return ResourceManager.GetString("CurrentEmailText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 十二月 的本地化字符串。
+        /// </summary>
+        public static string DecemberText {
+            get {
+                return ResourceManager.GetString("DecemberText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 二月 的本地化字符串。
+        /// </summary>
+        public static string FebruaryText {
+            get {
+                return ResourceManager.GetString("FebruaryText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 找回密码 的本地化字符串。
+        /// </summary>
+        public static string FindPwdTitleText {
+            get {
+                return ResourceManager.GetString("FindPwdTitleText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 获取验证码 的本地化字符串。
+        /// </summary>
+        public static string GetCaptchaText {
+            get {
+                return ResourceManager.GetString("GetCaptchaText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 一月 的本地化字符串。
+        /// </summary>
+        public static string JanuaryText {
+            get {
+                return ResourceManager.GetString("JanuaryText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 七月 的本地化字符串。
+        /// </summary>
+        public static string JulyText {
+            get {
+                return ResourceManager.GetString("JulyText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 六月 的本地化字符串。
+        /// </summary>
+        public static string JuneText {
+            get {
+                return ResourceManager.GetString("JuneText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 三月 的本地化字符串。
+        /// </summary>
+        public static string MarchText {
+            get {
+                return ResourceManager.GetString("MarchText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 五月 的本地化字符串。
+        /// </summary>
+        public static string MayText {
+            get {
+                return ResourceManager.GetString("MayText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 月 的本地化字符串。
+        /// </summary>
+        public static string MonthString {
+            get {
+                return ResourceManager.GetString("MonthString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 音乐清单 的本地化字符串。
         /// </summary>
         public static string MusicMarketText {
             get {
                 return ResourceManager.GetString("MusicMarketText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 新密码 的本地化字符串。
+        /// </summary>
+        public static string NewPwdText {
+            get {
+                return ResourceManager.GetString("NewPwdText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 请输入新密码 的本地化字符串。
+        /// </summary>
+        public static string NewPwdWatermarkText {
+            get {
+                return ResourceManager.GetString("NewPwdWatermarkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 十一月 的本地化字符串。
+        /// </summary>
+        public static string NovemberText {
+            get {
+                return ResourceManager.GetString("NovemberText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 十月 的本地化字符串。
+        /// </summary>
+        public static string OctoberText {
+            get {
+                return ResourceManager.GetString("OctoberText", resourceCulture);
             }
         }
         
@@ -129,6 +291,60 @@ namespace MiniMusicDesktop.Assets {
         public static string PasswordWatermarkText {
             get {
                 return ResourceManager.GetString("PasswordWatermarkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 确认密码 的本地化字符串。
+        /// </summary>
+        public static string RepeatNewPwdText {
+            get {
+                return ResourceManager.GetString("RepeatNewPwdText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 请再次输入密码 的本地化字符串。
+        /// </summary>
+        public static string RepeatNewPwdWatermarkText {
+            get {
+                return ResourceManager.GetString("RepeatNewPwdWatermarkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 重置密码 的本地化字符串。
+        /// </summary>
+        public static string ResetPwdText {
+            get {
+                return ResourceManager.GetString("ResetPwdText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 九月 的本地化字符串。
+        /// </summary>
+        public static string SeptemberText {
+            get {
+                return ResourceManager.GetString("SeptemberText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 确认 的本地化字符串。
+        /// </summary>
+        public static string SubmitText {
+            get {
+                return ResourceManager.GetString("SubmitText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 年 的本地化字符串。
+        /// </summary>
+        public static string YearString {
+            get {
+                return ResourceManager.GetString("YearString", resourceCulture);
             }
         }
     }

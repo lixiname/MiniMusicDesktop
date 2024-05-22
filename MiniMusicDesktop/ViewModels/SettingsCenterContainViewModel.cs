@@ -1,8 +1,10 @@
-﻿using MiniMusicDesktop.ViewModels;
+﻿using MiniMusicDesktop.Models;
+using MiniMusicDesktop.ViewModels;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,9 +19,18 @@ namespace MiniMusicDesktop.ViewModels
             set => this.RaiseAndSetIfChanged(ref _contentViewModel, value);
         }
 
-        public SettingsCenterContainViewModel()
+        private InfoProfile _infoProfile;
+        public InfoProfile InfoProfile
         {
+            get => _infoProfile;
+            set => this.RaiseAndSetIfChanged(ref _infoProfile, value);
+        }
+
+        public SettingsCenterContainViewModel(InfoProfile infoProfile)
+        {
+            _infoProfile = infoProfile;
             _contentViewModel = new LanguageViewModel();
+            
 
         }
 
@@ -39,8 +50,20 @@ namespace MiniMusicDesktop.ViewModels
         {
             ContentViewModel = new AboutInformationViewModel();
         }
+        public void ChangeToFindPassowrdViewModel()
+        {
+            var _findPwdViewModel = new FindPwdViewModel(InfoProfile);
+            _findPwdViewModel.ResetPwdCommand
+                .Take(1)
+                .Subscribe(newItem =>
+                {
+                    ContentViewModel = new LanguageViewModel();
+                });
+
+            ContentViewModel = _findPwdViewModel;
+        }
 
 
-       
+
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Avalonia;
-
+using MiniMusicDesktop.Models;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -28,7 +28,7 @@ namespace MiniMusicDesktop.ViewModels
             set => this.RaiseAndSetIfChanged(ref _centerContainViewModel, value);
         }
 
-        public ICommand PasswordRemarkCommand { get; }
+        
         //应用设置
         public ICommand SettingsCommand { get; }
         //意见反馈
@@ -37,19 +37,26 @@ namespace MiniMusicDesktop.ViewModels
         public ICommand TroubleTipsCommand { get; }
         //关于软件
         public ICommand AboutInformationCommand { get; }
+        //密码找回
+        public ICommand FindPassowrdCommand { get; }
 
-      
 
-        public SettingsViewModel()
+        private InfoProfile _infoProfile;
+        public InfoProfile InfoProfile
         {
-            _centerContainViewModel = new SettingsCenterContainViewModel();
+            get => _infoProfile;
+            set => this.RaiseAndSetIfChanged(ref _infoProfile, value);
+        }
+
+
+        public SettingsViewModel(InfoProfile infoProfile)
+        {
+            _infoProfile = infoProfile;
+            _centerContainViewModel = new SettingsCenterContainViewModel(InfoProfile);
             CloseSettingsCommand = ReactiveCommand.Create(() => { }) ;
             ChangeProfileCommand = ReactiveCommand.Create(() => { });
 
-            PasswordRemarkCommand = ReactiveCommand.CreateFromTask(async () =>
-            {
-                CenterContainViewModel.ChangeToLanguageViewModel();
-            });
+            
             SettingsCommand = ReactiveCommand.CreateFromTask(async () =>
             {
                 CenterContainViewModel.ChangeToLanguageViewModel();
@@ -66,8 +73,15 @@ namespace MiniMusicDesktop.ViewModels
             {
                 CenterContainViewModel.ChangeToAboutInformationViewModel();
             });
+            FindPassowrdCommand = ReactiveCommand.CreateFromTask(async () =>
+            {
+                CenterContainViewModel.ChangeToFindPassowrdViewModel();
+            });
 
             
+
+
+
         }
         public string Description
         {
