@@ -12,6 +12,7 @@ using Avalonia.Controls;
 using Avalonia.Extensions.Media;
 using MiniMusicDesktop.Models;
 using MiniMusicDesktop.Models.Common.Enum;
+using MiniMusicDesktop.Models.DTO;
 using ReactiveUI;
 using SkiaSharp;
 namespace MiniMusicDesktop.ViewModels
@@ -23,7 +24,13 @@ namespace MiniMusicDesktop.ViewModels
         public ICommand DownloadCommand { get; }
         public ICommand CollectedCommand { get; }
         public ICommand SettingsCommand { get; }
-
+        public ICommand TalkHistoryCommand { get; }
+        public ICommand StyleCommand { get; }
+        public ICommand AgreedMusicCommand { get; }
+        public ICommand CollectMusicCommand { get; }
+        public ICommand DownloadMusicCommand { get; }
+        
+        
         public ReactiveCommand<Unit, Unit> UserInformationSettingsCommand { get; }
 
 
@@ -121,6 +128,9 @@ namespace MiniMusicDesktop.ViewModels
 
         }
 
+        
+
+        public bool BackState { get; set; } = true;
 
         public UserMainWindowViewModel(InfoProfile userInfo) 
         {
@@ -131,7 +141,10 @@ namespace MiniMusicDesktop.ViewModels
             _userInfo = userInfo;
            _centerContainViewModel = new CenterContainViewModel(_userInfo);
 
-            
+            StyleCommand = ReactiveCommand.CreateFromTask(async () =>
+            {
+                
+            });
 
             MarktetCommand = ReactiveCommand.CreateFromTask(async () =>
             {
@@ -159,8 +172,41 @@ namespace MiniMusicDesktop.ViewModels
             {
                 CenterContainViewModel.ChangeToUserInformationSettingsViewModel(UserInfo);
             });
+            TalkHistoryCommand = ReactiveCommand.CreateFromTask(async () =>
+            {
+                CenterContainViewModel.ChangeToTalkHistoryViewModel();
+            });
+            
 
-            BuyMusicCommand =ReactiveCommand.CreateFromTask(async () =>
+
+            AgreedMusicCommand = ReactiveCommand.CreateFromTask(async () =>
+            {
+                var userCache=User.ReadLocalCache();
+                var musicItem = CenterContainViewModel.MusicItem;
+                await Music.AgreedMusicAsync(userCache.Id, musicItem.Id, DateTime.Now);
+            });
+            CollectMusicCommand = ReactiveCommand.CreateFromTask(async () =>
+            {
+                var userCache = User.ReadLocalCache();
+                var musicItem = CenterContainViewModel.MusicItem;
+                await Music.CollectMusicAsync(userCache.Id, musicItem.Id, DateTime.Now);
+            });
+            DownloadMusicCommand = ReactiveCommand.CreateFromTask(async () =>
+            {
+                var userCache = User.ReadLocalCache();
+                var musicItem = CenterContainViewModel.MusicItem;
+                var musicContent = await Music.DownLoadMusicAsync(userCache.Id, musicItem.Id, DateTime.Now);
+                var directoryPath = Music.ReadDownloadConfig();
+                
+                var filePath = Path.Combine(directoryPath, $"{musicItem.Name}.mp3");
+                
+                using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None, bufferSize: 4096, useAsync: true))
+                {
+                    await musicContent.CopyToAsync(fileStream);
+                }
+            });
+
+        BuyMusicCommand =ReactiveCommand.CreateFromTask(async () =>
             {
 
                 var store = new SearchMusicViewModel();
@@ -174,10 +220,9 @@ namespace MiniMusicDesktop.ViewModels
             });
             
 
-
-
-
         }
+
+        
 
         public ObservableCollection<AlbumViewModel> Albums { get; } = new();
     }

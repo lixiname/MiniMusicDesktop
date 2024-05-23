@@ -38,7 +38,9 @@
 						<DockPanel >
 							<PathIcon Data="{StaticResource  folder_open_regular}"
 									  DockPanel.Dock="Right"></PathIcon>
-							<TextBlock DockPanel.Dock="Left">打开本地目录</TextBlock>
+							<Button DockPanel.Dock="Left" 
+									Command="{Binding OpenFolderCommand}">打开本地目录
+								</Button>
 						</DockPanel>
 					</Button>
 					<TextBlock DockPanel.Dock="Right"></TextBlock>

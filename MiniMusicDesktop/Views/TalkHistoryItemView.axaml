@@ -2,11 +2,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 xmlns:vm="using:MiniMusicDesktop.ViewModels"
+             xmlns:vm="using:MiniMusicDesktop.ViewModels"
 			 xmlns:views="clr-namespace:MiniMusicDesktop.Views"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="MiniMusicDesktop.Views.RemarkItemView"
-			 x:DataType="vm:RemarkItemViewModel">
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MiniMusicDesktop.Views.TalkHistoryItemView">
 	<DockPanel>
 		<StackPanel DockPanel.Dock="Left">
 			<Border CornerRadius="20" ClipToBounds="True"
@@ -21,11 +20,10 @@
 		<Border CornerRadius="20" ClipToBounds="True" DockPanel.Dock="Right"
 				Padding="10">
 			<StackPanel  Spacing="5" Margin="10">
-				<TextBlock HorizontalAlignment="Left" Text="{Binding UId}"/>
 				<StackPanel Spacing="5" Margin="10" Orientation="Horizontal">
 					<Border CornerRadius="5" ClipToBounds="True"
 							Padding="3">
-						<TextBlock  Text="{Binding Name}"/>
+						<TextBlock  Text="{Binding MusicName}"/>
 					</Border>
 					<Border CornerRadius="5" ClipToBounds="True"
 						BorderBrush="Gray"

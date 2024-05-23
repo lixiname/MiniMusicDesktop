@@ -34,6 +34,10 @@ namespace MiniMusicDesktop.ViewModels
         public ICommand RemarkManagementCommand { get; }
         public ICommand UserManagementCommand { get; }
 
+        public ICommand MusicCollectChartCommand { get; }
+        public ICommand MusicAgreedChartCommand { get; }
+        public ICommand MusicDownloadChartCommand { get; }
+               
         public ManagmentMainViewModel(InfoProfile userInfo)
         {
             _userInfo = userInfo;
@@ -50,6 +54,19 @@ namespace MiniMusicDesktop.ViewModels
             UserManagementCommand = ReactiveCommand.CreateFromTask(async () =>
             {
                 CenterContainViewModel.ChangeToUserManagementViewModel();
+            });
+
+            MusicCollectChartCommand = ReactiveCommand.CreateFromTask(async () =>
+            {
+                CenterContainViewModel.ChangeToMusicCollectChart();
+            });
+            MusicAgreedChartCommand = ReactiveCommand.CreateFromTask(async () =>
+            {
+                CenterContainViewModel.ChangeToMusicAgreedChart();
+            });
+            MusicDownloadChartCommand = ReactiveCommand.CreateFromTask(async () =>
+            {
+                CenterContainViewModel.ChangeToMusicDownloadChart();
             });
         }
     }

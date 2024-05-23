@@ -209,6 +209,14 @@
     <value>如果没有账号？</value>
     <comment>登录</comment>
   </data>
+  <data name="RemarkText" xml:space="preserve">
+    <value>评论</value>
+    <comment>评论</comment>
+  </data>
+  <data name="RemarkWatermarkText" xml:space="preserve">
+    <value>请输入评论内容</value>
+    <comment>评论</comment>
+  </data>
   <data name="RepeatNewPwdText" xml:space="preserve">
     <value>确认密码</value>
   </data>
@@ -227,6 +235,10 @@
   <data name="SystemTitleText" xml:space="preserve">
     <value>音乐桌面应用系统</value>
     <comment>登录</comment>
+  </data>
+  <data name="UserRemarkText" xml:space="preserve">
+    <value>我对此进行评论</value>
+    <comment>评论</comment>
   </data>
   <data name="UserRoleText" xml:space="preserve">
     <value>个人用户</value>

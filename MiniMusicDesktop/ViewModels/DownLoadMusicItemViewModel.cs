@@ -13,33 +13,22 @@ namespace MiniMusicDesktop.ViewModels
 {
     public class DownLoadMusicItemViewModel : ViewModelBase
     {
-        private readonly Music _item;
-        public DownLoadMusicItemViewModel(Music item)
+        
+        public DownLoadMusicItemViewModel(string fileName, string fileSizeInBytes)
         {
-            _item = item;
+            _fileName = fileName;
+            _fileSizeInBytes = fileSizeInBytes;
         }
+        string _fileName;
 
-        public long Id => _item.Id;
+        string _fileSizeInBytes;
+       
+        public string FileName=>_fileName;
 
-        public string Title => _item.Name;
+        public string FileSizeInBytes=> _fileSizeInBytes;
 
         public string Size => readSize();
 
-        private Bitmap? _cover;
-
-        public Bitmap? Cover
-        {
-            get => _cover;
-            private set => this.RaiseAndSetIfChanged(ref _cover, value);
-        }
-
-        public async Task LoadCover()
-        {
-            await using (var imageStream = await _item.LoadCoverBitmapAsync())
-            {
-                Cover = await Task.Run(() => Bitmap.DecodeToWidth(imageStream, 400));
-            }
-        }
 
         private string readSize()
         {

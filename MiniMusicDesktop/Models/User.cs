@@ -233,7 +233,42 @@ namespace MiniMusicDesktop.Models
             }
         }
 
-        
+        public static void WriteLocalCache(InfoProfile userInfo)
+        {
+            var personInfo = new UserLocalCache
+            {
+                Id = userInfo.Id,
+                UserId = userInfo.UserId,
+                Name = userInfo.Name
+            };
+            string jsonString = JsonConvert.SerializeObject(personInfo);
+            var filePath = _getLocalCachePath();
+            try
+            {
+                File.WriteAllText(filePath, jsonString);
+                Debug.WriteLine("JSON file has been created successfully.");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("An error occurred: " + ex.Message);
+            }
+        }
+        public static UserLocalCache ReadLocalCache()
+        {
+            var filePath = _getLocalCachePath();
+            string jsonString = File.ReadAllText(filePath);
+            var personInfo = JsonConvert.DeserializeObject<UserLocalCache>(jsonString);
+            return personInfo;
+        }
+        private static string _getLocalCachePath()
+        {
+            string baseurl = Directory.GetCurrentDirectory();
+            var dir = Path.Combine(baseurl, @"LocalCache\userInfo");
+            Directory.CreateDirectory(dir);
+            var filePath = Path.Combine(dir, "userInfoFile.json");
+            return filePath;
+        }
+
     }
     
 }

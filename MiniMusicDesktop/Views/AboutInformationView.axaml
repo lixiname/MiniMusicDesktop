@@ -4,5 +4,49 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="MiniMusicDesktop.Views.AboutInformationView">
-	Welcome to Avalonia! AboutInformationView
+	<DockPanel>
+		<Border DockPanel.Dock="Top"
+				BorderBrush="Black"
+				CornerRadius="8"
+				Padding="10" Margin="10">
+			<TextBlock >
+				版本号：当前音乐软件的版本号 v-1。版本号的更新通常代表软件的功能改进、bug 修复或安全性提升。
+			</TextBlock>
+		</Border>
+		<Border DockPanel.Dock="Top"
+				BorderBrush="Black"
+				CornerRadius="8"
+				Padding="10" Margin="10">
+			<TextBlock >
+				更新日志：展示当前版本与之前版本的变化和更新内容，包括新增功能、优化改进、问题修复等，帮助用户了解软件更新的具体内容。
+			</TextBlock>
+		</Border>
+		<Border DockPanel.Dock="Top"
+				BorderBrush="Black"
+				CornerRadius="8"
+				Padding="10" Margin="10">
+			<TextBlock >
+				开发团队信息：史东洋，提供开发者的联系方式或官方网站地址，以便用户获取更多关于软件的信息和支持。
+			</TextBlock>
+		</Border>
+		<Border DockPanel.Dock="Top"
+				BorderBrush="Black"
+				CornerRadius="8"
+				Padding="10" Margin="10">
+			<TextBlock >
+				版权信息：显示音乐软件的版权归属信息，包括版权所有者、版权声明以及相关法律信息，帮助用户了解软件使用和传播的法律条款。
+
+			</TextBlock>
+		</Border>
+		<Border DockPanel.Dock="Top"
+				BorderBrush="Black"
+				CornerRadius="8"
+				Padding="10" Margin="10">
+			<TextBlock >
+				
+				软件许可证信息：展示音乐软件所采用的许可证类型，开源许可证（ MIT）。
+			</TextBlock>
+		</Border>
+		
+	</DockPanel>
 </UserControl>

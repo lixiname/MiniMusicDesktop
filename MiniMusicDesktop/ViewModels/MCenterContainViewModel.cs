@@ -8,45 +8,46 @@ using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MiniMusicDesktop.ViewModels
+namespace MiniMusicDesktop.ViewModels;
+
+
+public class MCenterContainViewModel : ViewModelBase
 {
-   
-    public class MCenterContainViewModel : ViewModelBase
+    private ViewModelBase _contentViewModel;
+    public ViewModelBase ContentViewModel
     {
-        private ViewModelBase _contentViewModel;
-        public ViewModelBase ContentViewModel
-        {
-            get => _contentViewModel;
-            set => this.RaiseAndSetIfChanged(ref _contentViewModel, value);
-        }
-        public MCenterContainViewModel()
-        {
-            _contentViewModel = new MMarketViewModel();
-
-        }
-        public void ChangeToMarketManagementViewModel()
-        {
-            ContentViewModel = new MMarketViewModel();
-        }
-        public void ChangeToRemarkManagementViewModel()
-        {
-            ContentViewModel = new MRemarkViewModel();
-        }
-        public void ChangeToUserManagementViewModel()
-        {
-            ContentViewModel = new MUserViewModel();
-        }
-
-
-
-
-
-
-
-
-
-
-
+        get => _contentViewModel;
+        set => this.RaiseAndSetIfChanged(ref _contentViewModel, value);
+    }
+    public MCenterContainViewModel()
+    {
+        _contentViewModel = new MMarketViewModel();
 
     }
+    public void ChangeToMarketManagementViewModel()
+    {
+        ContentViewModel = new MMarketViewModel();
+    }
+    public void ChangeToRemarkManagementViewModel()
+    {
+        ContentViewModel = new MRemarkViewModel();
+    }
+    public void ChangeToUserManagementViewModel()
+    {
+        ContentViewModel = new MUserViewModel();
+    }
+
+    public void ChangeToMusicCollectChart()
+    {
+        ContentViewModel = new BarChartViewModel();
+    }
+    public void ChangeToMusicAgreedChart()
+    {
+        ContentViewModel = new LineChartViewModel();
+    }
+    public void ChangeToMusicDownloadChart()
+    {
+        ContentViewModel = new PieChartViewModel();
+    }
+    
 }

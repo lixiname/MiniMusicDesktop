@@ -331,6 +331,24 @@ namespace MiniMusicDesktop.Assets {
         }
         
         /// <summary>
+        ///   查找类似 评论 的本地化字符串。
+        /// </summary>
+        public static string RemarkText {
+            get {
+                return ResourceManager.GetString("RemarkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 请输入评论内容 的本地化字符串。
+        /// </summary>
+        public static string RemarkWatermarkText {
+            get {
+                return ResourceManager.GetString("RemarkWatermarkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 确认密码 的本地化字符串。
         /// </summary>
         public static string RepeatNewPwdText {
@@ -381,6 +399,15 @@ namespace MiniMusicDesktop.Assets {
         public static string SystemTitleText {
             get {
                 return ResourceManager.GetString("SystemTitleText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 我对此进行评论 的本地化字符串。
+        /// </summary>
+        public static string UserRemarkText {
+            get {
+                return ResourceManager.GetString("UserRemarkText", resourceCulture);
             }
         }
         

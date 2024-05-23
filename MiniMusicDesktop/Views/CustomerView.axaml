@@ -4,5 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="MiniMusicDesktop.Views.CustomerView">
-  Welcome to Avalonia!
+	<DockPanel>
+		<Border DockPanel.Dock="Top"
+				BorderBrush="Black"
+				CornerRadius="8"
+				Padding="10" Margin="10">
+			<TextBlock >
+				如有问题请联系当事人：史东洋-QQ: xxxxxqq.com或手机号xxxx。
+			</TextBlock>
+		</Border>
+		
+	</DockPanel>
 </UserControl>

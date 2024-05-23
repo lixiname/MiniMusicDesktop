@@ -15,7 +15,7 @@ namespace MiniMusicDesktop.ViewModels
 {
     public class MusicItemViewModel : ViewModelBase
     {
-        private readonly Music _item;
+        public readonly Music _item;
 
 
         public ICommand RemarkCommand { get; }

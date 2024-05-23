@@ -1,4 +1,8 @@
 using Avalonia.Controls;
+using Avalonia.Platform.Storage;
+using LibVLCSharp.Shared;
+using ReactiveUI;
+using System.Security.AccessControl;
 
 namespace MiniMusicDesktop.Views
 {
@@ -7,6 +11,10 @@ namespace MiniMusicDesktop.Views
         public DownloadView()
         {
             InitializeComponent();
+        }
+        public  async void OpenFolderClick()
+        {
+            
         }
     }
 }

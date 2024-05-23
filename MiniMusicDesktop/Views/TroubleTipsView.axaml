@@ -2,7 +2,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="MiniMusicDesktop.Views.TroubleTipsView">
-	Welcome to Avalonia! TroubleTipsView
+	<DockPanel>
+		<Border DockPanel.Dock="Top"
+				BorderBrush="Black"
+				CornerRadius="8"
+				Padding="10" Margin="10">
+			<TextBlock >
+				常见问题1：验证码的刷新延迟问题。
+			</TextBlock>
+		</Border>
+		<Border DockPanel.Dock="Top"
+				BorderBrush="Black"
+				CornerRadius="8"
+				Padding="10" Margin="10">
+			<TextBlock >
+				常见问题2：数据加载延迟问题，因网络等原因数据加载可能出现延迟。
+			</TextBlock>
+		</Border>
+		<Border DockPanel.Dock="Top"
+				BorderBrush="Black"
+				CornerRadius="8"
+				Padding="10" Margin="10">
+			<TextBlock >
+				常见问题3：下载缓慢，因网络原因下载可能会出现暂停。
+			</TextBlock>
+		</Border>
+		
+		
+
+	</DockPanel>
 </UserControl>

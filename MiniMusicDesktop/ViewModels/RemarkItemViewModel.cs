@@ -8,29 +8,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MiniMusicDesktop.Models.DTO;
 
 namespace MiniMusicDesktop.ViewModels
 {
     public class RemarkItemViewModel : ViewModelBase
     {
-        private readonly User _item;
-        public RemarkItemViewModel(User item)
+        private TalkDTO _item;
+        public RemarkItemViewModel(TalkDTO item)
         {
             _item = item;
         }
 
-        public long Id => _item.Id;
-        public string Password => "长度" + _item.Password.Length.ToString();
+        public long Id => _item.TalkId;
+        public string UId => _item.TalkUId;
 
-        public string UId => _item.UserId;
+        public string Name => _item.UserName;
 
-        public string Name => _item.Name;
-
-        public string ProfilePictureUrl => _item.ProfilePictureUrl;
+        public string ProfilePictureUrl => "";
 
         public string Email => _item.Email;
 
         public string Phone => _item.Phone;
+
+        public string TalkContent => _item.Contents;
 
 
         public string State
@@ -77,10 +78,10 @@ namespace MiniMusicDesktop.ViewModels
 
         public async Task LoadCover()
         {
-            await using (var imageStream = await _item.LoadCoverBitmapAsync())
-            {
-                Cover = await Task.Run(() => Bitmap.DecodeToWidth(imageStream, 400));
-            }
+            //await using (var imageStream = await _item.LoadCoverBitmapAsync())
+            //{
+            //    Cover = await Task.Run(() => Bitmap.DecodeToWidth(imageStream, 400));
+            //}
         }
 
     }

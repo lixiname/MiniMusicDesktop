@@ -14,25 +14,75 @@
 			   Content="{x:Static assets:Resources.MusicDetailText}"/>
 			
 		
-		<StackPanel Spacing="5" Width="200" DockPanel.Dock="Top">
+		<StackPanel Spacing="5" Width="150" DockPanel.Dock="Top">
 			<Border CornerRadius="10" ClipToBounds="True">
 				<Panel Background="Gold">
-					<Image Width="200" Stretch="Uniform" Source="{Binding Cover}"/>
-					<Panel Height="200">
+					<Image Width="150" Stretch="Uniform" Source="{Binding Cover}"/>
+					<Panel Height="150">
 						<PathIcon Height="65" Width="65" Data="{StaticResource music_regular}" />
 					</Panel>
 				</Panel>
 			</Border>
-			<TextBlock HorizontalAlignment="Center" Text="{Binding Title}"/>
-			<TextBlock HorizontalAlignment="Center" Text="{Binding Artist}"/>
+			
+			<StackPanel Spacing="5" Margin="10" Orientation="Horizontal">
+				<Border CornerRadius="5" ClipToBounds="True"
+						Padding="3">
+					<TextBlock  Text="{Binding Name}-"/>
+				</Border>
+				<Border CornerRadius="5" ClipToBounds="True"
+					BorderBrush="Gray"
+					BorderThickness="1"
+					Padding="3">
+					<TextBlock  Text="{Binding MusicType}"/>
+				</Border>
+				<Border CornerRadius="5" ClipToBounds="True"
+						Padding="3">
+					<TextBlock  Text="{Binding Author}"/>
+				</Border>
+				
+			</StackPanel>
+			
 		</StackPanel>
+		<Separator DockPanel.Dock="Top"></Separator>
+		<Grid DockPanel.Dock="Top"
+			ColumnDefinitions="* * * * *" RowDefinitions="*">
+			<Label Grid.Column="0" Grid.Row="0"
+				   HorizontalAlignment="Center"
+				Content="评论区"/>
+		</Grid>
+		
 		<ListBox ItemsSource="{Binding SearchResults}" SelectedItem="{Binding SelectedItem}"
-				 Background="Transparent" Margin="0 20">
+				 Background="Transparent" Margin="0 20" DockPanel.Dock="Top" Height="100">
 			<ListBox.ItemsPanel>
 				<ItemsPanelTemplate>
 					<WrapPanel />
 				</ItemsPanelTemplate>
 			</ListBox.ItemsPanel>
 		</ListBox>
+		<Separator DockPanel.Dock="Top"></Separator>
+		<Grid DockPanel.Dock="Top"
+			ColumnDefinitions="* * * * *" RowDefinitions="*">
+			<Label Grid.Column="0" Grid.Row="0"
+				   HorizontalAlignment="Center"
+				Content="{x:Static assets:Resources.UserRemarkText}"/>
+		</Grid>
+		<Grid DockPanel.Dock="Top" RowDefinitions="* *" ColumnDefinitions="* * *">
+			<Label 
+				Grid.Column="0" Grid.Row="0"
+				Content="{x:Static assets:Resources.RemarkText}"/>
+			<TextBox  
+				Height="60"
+				Grid.Column="1" Grid.Row="0"
+				Watermark="{x:Static assets:Resources.RemarkWatermarkText}"
+					  Text="{Binding RemarkContent}"
+				      AcceptsReturn="True"
+			          TextWrapping="Wrap"/>
+			<Button 
+				Grid.Column="2" Grid.Row="1"
+				Command="{Binding RemarkCommand}"
+				Content="{x:Static assets:Resources.SubmitText}"/>
+		</Grid>
+		<Separator DockPanel.Dock="Top"></Separator>
+		
 	</DockPanel>
 </UserControl>

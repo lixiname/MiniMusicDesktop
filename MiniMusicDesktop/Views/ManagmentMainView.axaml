@@ -72,7 +72,7 @@
 		</Grid>
 		<DockPanel DockPanel.Dock="Bottom">
 			<Panel DockPanel.Dock="Left" Background="Black" Width="200">
-				<Grid RowDefinitions="Auto Auto Auto  Auto  Auto" ColumnDefinitions="200" >
+				<Grid RowDefinitions="Auto Auto Auto  Auto  Auto Auto" ColumnDefinitions="200" >
 					
 					<Button Grid.Column="0" Grid.Row="0" Width="200" HorizontalContentAlignment="Center"
 							VerticalAlignment="Center"
@@ -110,6 +110,44 @@
 									  DockPanel.Dock="Left"></PathIcon>
 							<TextBlock
 								DockPanel.Dock="Right">用户账号管理</TextBlock>
+
+						</DockPanel>
+					</Button>
+					<Button Grid.Column="0" Grid.Row="3" Width="200" HorizontalContentAlignment="Center"
+							Height="30"
+							Margin="0 5 0 5"
+							Command="{Binding MusicCollectChartCommand}">
+
+						<DockPanel>
+							<PathIcon Data="{StaticResource  whiteboard_regular}"
+									  DockPanel.Dock="Left"></PathIcon>
+							<TextBlock
+								DockPanel.Dock="Right">歌曲收藏统计</TextBlock>
+
+						</DockPanel>
+					</Button>
+					<Button Grid.Column="0" Grid.Row="4" Width="200" HorizontalContentAlignment="Center"
+							Height="30"
+							Margin="0 5 0 5"
+							Command="{Binding MusicAgreedChartCommand}">
+						<DockPanel>
+							<PathIcon Data="{StaticResource  whiteboard_regular}"
+									  DockPanel.Dock="Left"></PathIcon>
+							<TextBlock
+								DockPanel.Dock="Right">歌曲点赞热度统计</TextBlock>
+
+						</DockPanel>
+					</Button>
+					<Button Grid.Column="0" Grid.Row="5" Width="200" HorizontalContentAlignment="Center"
+							Height="30"
+							Margin="0 5 0 5"
+							Command="{Binding MusicDownloadChartCommand}">
+
+						<DockPanel>
+							<PathIcon Data="{StaticResource  whiteboard_regular}"
+									  DockPanel.Dock="Left"></PathIcon>
+							<TextBlock
+								DockPanel.Dock="Right">歌曲下载次数统计</TextBlock>
 
 						</DockPanel>
 					</Button>

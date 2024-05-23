@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reactive;
 using System.Reactive.Linq;
 using System.Text;
 using System.Threading;
@@ -25,9 +26,16 @@ namespace MiniMusicDesktop.ViewModels
         }
 
         private long _userId;
+
+
+        public ReactiveCommand<Unit, CollectedMusicItemViewModel> PlayMusicCommand { get; }
         public CollectedViewModel(long userId)
         {
             _userId = userId;
+            PlayMusicCommand = ReactiveCommand.CreateFromTask(async () =>
+            {
+                return SelectedItem;
+            });
             DoSearch();
         }
         

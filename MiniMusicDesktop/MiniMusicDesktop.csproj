@@ -36,7 +36,7 @@
   
 
   <ItemGroup>
-    <Folder Include="LocalCache\" />
+    <Folder Include="LocalCache\userInfo\" />
     <Folder Include="Properties\" />
   </ItemGroup>
 

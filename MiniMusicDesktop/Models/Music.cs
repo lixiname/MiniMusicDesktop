@@ -15,6 +15,10 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 using MiniMusicDesktop.Models.Common.Enum;
 using MiniMusicDesktop.Models.Common.Const;
 using MiniMusicDesktop.Models.DTO;
+using System.Reflection.Metadata;
+using MiniMusicDesktop.Models.Common;
+using System.Diagnostics;
+using MiniMusicDesktop.Models.Config;
 
 namespace MiniMusicDesktop.Models
 {
@@ -54,7 +58,7 @@ namespace MiniMusicDesktop.Models
         {
             using (HttpClient s_httpClient = new())
             {
-                s_httpClient.BaseAddress = new Uri("https://localhost:7151");
+                s_httpClient.BaseAddress = new Uri(ConfigConstant.BaseUrl);
 
                 var data = await s_httpClient.GetAsync("Search");
                 try
@@ -75,6 +79,27 @@ namespace MiniMusicDesktop.Models
             }
                 
 
+        }
+        public async Task<Music> MusicContentAsync()
+        {
+            using (HttpClient s_httpClient = new())
+            {
+                s_httpClient.BaseAddress = new Uri(ConfigConstant.BaseUrl);
+
+                var data = await s_httpClient.GetAsync($"?musicId={Id}");
+                try
+                {
+                    data.EnsureSuccessStatusCode();
+                    string stringResponse = await data.Content.ReadAsStringAsync();
+                    var searchResults = JsonConvert.DeserializeObject<Music>(stringResponse);
+                    return searchResults;
+                }
+                catch (HttpRequestException e)
+                {
+                    Console.WriteLine("music List error");
+                    return new Music();
+                }
+            }
         }
 
 
@@ -115,7 +140,7 @@ namespace MiniMusicDesktop.Models
         {
             using (HttpClient s_httpClient = new())
             {
-                s_httpClient.BaseAddress = new Uri("https://localhost:7151");
+                s_httpClient.BaseAddress = new Uri(ConfigConstant.BaseUrl);
 
                 var data = await s_httpClient.GetAsync($"CollectSearch?UserId={userId}");
                 try
@@ -188,6 +213,177 @@ namespace MiniMusicDesktop.Models
 
             }
 
+        }
+
+
+
+        public static async Task CollectMusicAsync(long userId,long musicId,DateTime time)
+        {
+            using (HttpClient s_httpClient = new())
+            {
+                s_httpClient.BaseAddress = new Uri(ConfigConstant.BaseUrl);
+                var data = new
+                {
+                    UserId = userId,
+                    MusicId = musicId,
+                    Time = time
+                };
+                string json = JsonConvert.SerializeObject(data);
+                HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                var resData = await s_httpClient.PostAsync("Collect", content);
+                try
+                {
+                    resData.EnsureSuccessStatusCode();
+                }
+                catch (HttpRequestException e)
+                {
+                    Debug.WriteLine("收藏过了");
+                }
+            }
+        }
+
+        public static async Task UnCollectMusicAsync(long userId, long musicId)
+        {
+            using (HttpClient s_httpClient = new())
+            {
+                s_httpClient.BaseAddress = new Uri(ConfigConstant.BaseUrl);
+                var resData = await s_httpClient.DeleteAsync($"Collect?UserId={userId}&&MusicId={musicId}");
+                try
+                {
+                    resData.EnsureSuccessStatusCode();
+                    Debug.WriteLine("已经取消收藏了");
+                }
+                catch (HttpRequestException e)
+                {
+                    Debug.WriteLine("error");
+                }
+            }
+        }
+
+        public static async Task AgreedMusicAsync(long userId, long musicId, DateTime time)
+        {
+            using (HttpClient s_httpClient = new())
+            {
+                s_httpClient.BaseAddress = new Uri(ConfigConstant.BaseUrl);
+                var data = new
+                {
+                    UserId = userId,
+                    MusicId = musicId,
+                    Time = time
+                };
+                string json = JsonConvert.SerializeObject(data);
+                HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                var resData = await s_httpClient.PostAsync("Agreed", content);
+                try
+                {
+                    resData.EnsureSuccessStatusCode();
+                }
+                catch (HttpRequestException e)
+                {
+                    Debug.WriteLine("music agreed error");
+                }
+            }
+        }
+
+        public static async Task UnAgreedMusicAsync(long userId, long musicId)
+        {
+            using (HttpClient s_httpClient = new())
+            {
+                s_httpClient.BaseAddress = new Uri(ConfigConstant.BaseUrl);
+                var resData = await s_httpClient.DeleteAsync($"Agreed?UserId={userId}&&MusicId={musicId}");
+                try
+                {
+                    resData.EnsureSuccessStatusCode();
+                    Debug.WriteLine("已经取消赞了");
+                }
+                catch (HttpRequestException e)
+                {
+                    Debug.WriteLine("error");
+                }
+            }
+        }
+
+        public static async Task TalkMusicAsync(TalkMusicDTO talkMusicDTO)
+        {
+            using (HttpClient s_httpClient = new())
+            {
+                s_httpClient.BaseAddress = new Uri(ConfigConstant.BaseUrl);
+                string json = JsonConvert.SerializeObject(talkMusicDTO);
+                HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                var resData = await s_httpClient.PostAsync("Talk", content);
+                try
+                {
+                    resData.EnsureSuccessStatusCode();
+                }
+                catch (HttpRequestException e)
+                {
+                    Debug.WriteLine("error");
+                }
+            }
+        }
+
+        public static async Task<List<TalkDTO>> SearchSingleMusicTalkAsync(long musicId)
+        {
+            using (HttpClient s_httpClient = new())
+            {
+                s_httpClient.BaseAddress = new Uri(ConfigConstant.BaseUrl);
+
+                var data = await s_httpClient.GetAsync($"SingleMusicTalkSearch?MusicId={musicId}");
+                try
+                {
+                    data.EnsureSuccessStatusCode();
+                    string stringResponse = await data.Content.ReadAsStringAsync();
+                    var searchResults = JsonConvert.DeserializeObject<List<TalkDTO>>(stringResponse);
+                    return searchResults;
+                }
+                catch (HttpRequestException e)
+                {
+                    Console.WriteLine("music talk List error");
+                    return new List<TalkDTO>();
+                }
+
+            }
+
+        }
+
+        public static async Task<List<TalkDTO>> SearchSingleUserTalkAsync(long userId)
+        {
+            using (HttpClient s_httpClient = new())
+            {
+                s_httpClient.BaseAddress = new Uri(ConfigConstant.BaseUrl);
+
+                var data = await s_httpClient.GetAsync($"SingleUserTalkSearch?UserId={userId}");
+                try
+                {
+                    data.EnsureSuccessStatusCode();
+                    string stringResponse = await data.Content.ReadAsStringAsync();
+                    var searchResults = JsonConvert.DeserializeObject<List<TalkDTO>>(stringResponse);
+                    return searchResults;
+                }
+                catch (HttpRequestException e)
+                {
+                    Console.WriteLine("music talk List error");
+                    return new List<TalkDTO>();
+                }
+
+            }
+
+        }
+
+
+
+
+        public static async Task<Stream> DownLoadMusicAsync(long userId, long musicId, DateTime time)
+        {
+            using (HttpClient s_httpClient = new())
+            {
+                //var resData = await s_httpClient.PostAsync("DownLoadMusic", content);
+                s_httpClient.BaseAddress = new Uri(ConfigConstant.BaseUrl);
+                var data = await s_httpClient.GetByteArrayAsync($"DownloadMusic?UserId={userId}&&MusicId=={musicId}&&Time=={time}");
+                //var data = await s_httpClient.GetByteArrayAsync($"Media?id={Id}");
+                return new MemoryStream(data);
+                
+            }
         }
 
 
@@ -278,5 +474,19 @@ namespace MiniMusicDesktop.Models
             }
 
         }
+
+
+        public static string ReadDownloadConfig()
+        {
+
+            var filePath = Path.Combine(@"E:\fileCatalog\localAssertDB", "localDownloadConfig.json");
+            string jsonString = File.ReadAllText(filePath);
+            var configInfo = JsonConvert.DeserializeObject<DownloadPathConfig>(jsonString);
+            return configInfo.LocalPath;
+        }
+
+
+
+
     }
 }

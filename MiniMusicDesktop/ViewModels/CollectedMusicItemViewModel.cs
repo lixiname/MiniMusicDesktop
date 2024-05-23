@@ -13,7 +13,7 @@ namespace MiniMusicDesktop.ViewModels
 {
     public class CollectedMusicItemViewModel : ViewModelBase
     {
-        private readonly Music _item;
+        public readonly Music _item;
         public CollectedMusicItemViewModel(Music item)
         {
             _item = item;

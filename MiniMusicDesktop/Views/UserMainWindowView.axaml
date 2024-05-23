@@ -8,7 +8,7 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="MiniMusicDesktop.Views.UserMainWindowView"
 		x:DataType="vm:UserMainWindowViewModel">
-	<Panel>
+	<Panel Name="FatherRoot">
 
 		<DockPanel>
 			<DockPanel  Margin="0 40 5 0"  DockPanel.Dock="Top">
@@ -17,10 +17,11 @@
 						<TextBlock >Logo</TextBlock>
 					</StackPanel>
 					<DockPanel Grid.Column="1" Grid.Row="0"  >
-						<Button DockPanel.Dock="Right" Margin="0 5 5 0"  >
+						<Button DockPanel.Dock="Right" Margin="0 5 5 0"  
+								Command="{Binding TalkHistoryCommand}">
 							<PathIcon Data="{StaticResource mail_copy_regular}" ></PathIcon>
 							<Button.Background>
-								<SolidColorBrush Color="Red"/>
+								<!--<SolidColorBrush Color="White"/>-->
 							</Button.Background>
 						</Button>
 						<Button DockPanel.Dock="Right" Margin="0 5 10 0" Background="Black" 
@@ -28,7 +29,8 @@
 							Command="{Binding SettingsCommand}">
 							<PathIcon Data="{StaticResource launcher_settings_regular}" ></PathIcon>
 						</Button>
-						<Button DockPanel.Dock="Right" Margin="0 5 10 0">
+						<Button DockPanel.Dock="Right" Margin="0 5 10 0"
+								Click="Change_style">
 							<PathIcon Data="{StaticResource weather_moon_regular}" ></PathIcon>
 						</Button>
 						<Button DockPanel.Dock="Right" Margin="0 5 10 0"
@@ -65,19 +67,26 @@
 					<DockPanel Grid.Column="2" Grid.Row="0" Margin="15 0 15 0">
 						<Grid DockPanel.Dock="Top"  RowDefinitions="Auto" ColumnDefinitions="* * 2* * *">
 							<Grid Grid.Column="2" Grid.Row="0"
-								  ColumnDefinitions="* * *" RowDefinitions="Auto">
+								  ColumnDefinitions="* * * *" RowDefinitions="Auto">
 								<!--播放 -->
 								<Button  Grid.Column="0" Grid.Row="0" 
 										 Click="Button_Click">
 									<PathIcon  Data="{StaticResource video_clip_regular}" 
 											   />
 								</Button>
+								<!--点赞 -->
+								<Button Grid.Column="1" Grid.Row="0" VerticalAlignment="Center"
+										Command="{Binding AgreedMusicCommand}">
+									<PathIcon  Data="{StaticResource thumb_like_regular}" />
+								</Button>
 								<!--收藏 -->
-								<Button Grid.Column="1" Grid.Row="0" VerticalAlignment="Center">
+								<Button Grid.Column="2" Grid.Row="0" VerticalAlignment="Center"
+										Command="{Binding CollectMusicCommand}">
 									<PathIcon  Data="{StaticResource star_regular}" />
 								</Button>
 								<!--下载 -->
-								<Button Grid.Column="2" Grid.Row="0" VerticalAlignment="Center">
+								<Button Grid.Column="3" Grid.Row="0" VerticalAlignment="Center"
+										Command="{Binding DownloadMusicCommand}">
 									<PathIcon  Data="{StaticResource text_sort_ascending_regular}" />
 								</Button>
 							</Grid>

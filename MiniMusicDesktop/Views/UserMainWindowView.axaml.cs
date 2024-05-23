@@ -1,5 +1,6 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Extensions.Media;
+using Avalonia.Media;
 using Avalonia.Platform.Storage;
 using Avalonia.ReactiveUI;
 using MiniMusicDesktop.Models.Common.Enum;
@@ -24,6 +25,25 @@ public partial class UserMainWindowView : ReactiveUserControl<UserMainWindowView
     }
     private string MusicMediaPath;
 
+
+    private async void Change_style(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        var panel = this.FindControl<Panel>("FatherRoot");
+        if (ViewModel!.BackState == true)
+        {
+            panel.Background = new SolidColorBrush(Colors.AliceBlue, 0.5);
+        }
+        else
+        {
+            ViewModel!.BackState = false;
+            panel.Background = new SolidColorBrush(Colors.Black, 0.5);
+        }
+        
+        
+        
+        
+
+    }
 
     private async void Button_init_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
